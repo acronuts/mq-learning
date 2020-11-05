@@ -3,7 +3,7 @@ import { colors, fontSizes } from '../../style/theme';
 
 
 
-export const SearchButton = styled.div`
+export const SearchButton = styled.select`
 
 
 `; 
