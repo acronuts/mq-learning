@@ -11,6 +11,7 @@ export const CardWrapper = styled.div`
     background: ${colors.white};
     border-radius: 1.5rem;
     padding: 1rem 1rem;
+    cursor: pointer;
 `;
 
 export const ContentWrapper = styled.div`

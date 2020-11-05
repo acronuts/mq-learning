@@ -69,8 +69,8 @@ const LoginPage = () => {
 						<InputsContainer registration>
 							<RegMessage>
 								<p>
-									Thanks for your registration. We've sent a code to your email
-									address.
+									Thanks for your registration. We've sent a validation code to
+									your email address.
 								</p>
 							</RegMessage>
 							<Button registerLoginBtn onClick={handleRegistration}>
@@ -100,7 +100,7 @@ const LoginPage = () => {
 					{currentStage === 3 ? (
 						<InputsContainer registrationVerifyCode>
 							<RegMessage>
-								<p>Your code was successfully verified. You can now login.</p>
+								<p>Your code was successfully validated. You can now login.</p>
 							</RegMessage>
 						</InputsContainer>
 					) : null}

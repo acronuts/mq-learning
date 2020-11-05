@@ -15,7 +15,7 @@ const WorkshopPage = () => {
 					<img src={mqlogo} alt='logo' />
 				</div>
 				<div className='workshop-info-container'>
-					<h1>Workshop Name</h1>
+					<h1>How to Make Inner Values Based Decisions: Zürich</h1>
 					<p>Mon, Nov 23rd | location </p>
 					<p>Zürich</p>
 					<p>Learn to develop deeper self awareness of your inner self.</p>
@@ -103,7 +103,7 @@ const WorkshopPage = () => {
 					</p>
 				</div>
 				<div className='action-btns-container'>
-					<Button backBtn onClick={() => history.push('/')}>
+					<Button backBtn onClick={() => history.push('/main-page')}>
 						Back
 					</Button>
 					<Button reserveBtn>Reserve</Button>

@@ -5,7 +5,7 @@ import mockupBanner from '../../assets/images/mockup-banner.jpg';
 export const TopBarWrapper = styled.section`
 	max-height: 20rem;
 	width: 100%;
-	padding: 1.5rem 0;
+	padding: 3rem 0 1rem;
 	color: ${colors.dimGray};
 	position: relative;
 	text-align: right;
@@ -18,14 +18,14 @@ export const TopBarWrapper = styled.section`
 		justify-content: flex-start;
 
 		img {
-			margin-top: 0.8rem;
-			width: 4rem;
+			margin-top: 0.5rem;
+			width: 4.6rem;
 		}
 	}
 
 	.workshop-info-container {
 		width: 70%;
-		padding: 0 2rem;
+		padding-left: 2.5rem;
 		text-align: left;
 
 		h1 {
@@ -37,7 +37,7 @@ export const TopBarWrapper = styled.section`
 			margin: 0.2rem 0;
 		}
 		p:nth-child(2) {
-			font-size: 1.2rem;
+			font-size: 1rem;
 		}
 		p:nth-child(3) {
 			font-size: 1rem;
@@ -63,8 +63,7 @@ export const Showcase = styled.section`
 	background-size: cover;
 	position: relative;
 	border-radius: 0.3rem;
-	/* border: 3px solid white; */
-	box-shadow: 0px 0px 29px -2px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.75);
 
 	::before {
 		content: '';
@@ -83,10 +82,10 @@ export const MainContent = styled.section`
 	min-height: 20rem;
 	margin: 3rem 0;
 	padding: 2rem;
-	border-radius: 0.5rem;
+	/* border-radius: 0.5rem; */
 	color: ${colors.dimGray};
-	background: rgba(255, 255, 255, 1);
-	box-shadow: 0px 0px 29px -2px rgba(0, 0, 0, 0.75);
+	background: #f2f2f2;
+	box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.75);
 
 	h1 {
 		font-size: ${fontSizes.medium};

@@ -14,11 +14,15 @@ export const GlobalStyle = createGlobalStyle`
 		font-size: 1rem;
         line-height: 1.6;
 		background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+		min-height: 100vh;
 		height: 100%;
 		margin: 0 auto;
-        color: '#181818';
+        color: rgba(0, 0, 0, .85);
 		position: relative;
-		z-index: 2;
+		z-index: 1;
 		::before {
 			content: '';
 			position: absolute;
@@ -42,6 +46,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     
     a{
+		color: inherit;
         text-decoration: none;
     }
 `;
@@ -66,7 +71,8 @@ export const colors = {
 export const fontSizes = {
 	small: '.8rem',
 	normal: '1rem',
-	medium: '1.5rem',
-	large: '1.8rem',
-	exLarge: '2.2rem',
+	medium: '1.2rem',
+	large: '1.6rem',
+	exLarge: '1.8rem',
+	
 };

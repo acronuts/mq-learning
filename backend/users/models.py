@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 import uuid
 from companies.models import Company
+from django.db.models import Sum, F
 
 
 def user_directory_path(instance, filename):
@@ -24,3 +25,7 @@ class User(AbstractUser):
 
     def __str__(self):
         return f'ID {self.pk}: {self.email}'
+
+    @property
+    def available_credit(self):
+        return self.fk_user_account.all().aggregate(total_available=Sum(F('credit')-F('debit')))

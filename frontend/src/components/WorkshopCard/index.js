@@ -2,16 +2,17 @@ import React from 'react';
 import { Container } from '../../style/Container';
 import { CardWrapper, ContentWrapper, ReserveBtnWrapper } from './styled';
 import { useHistory } from 'react-router-dom';
-import { Button } from '../../style/Button'
+import { Button } from '../../style/Button';
 
 const WorkshopCard = ({ workshop }) => {
-    const history = useHistory();
-    
+	const history = useHistory();
 
     return (
         <>
                 <CardWrapper>
-                    <ContentWrapper>
+                    <ContentWrapper
+                    				// onClick={() => history.push(`/workshop-single/${workshop.id}/`)}
+>
                         <div className='workshop-info'>
                             <p className ='Title'>Title</p>
                             <p>Location</p>
@@ -34,4 +35,4 @@ const WorkshopCard = ({ workshop }) => {
     )
 }
 
-export default WorkshopCard
+export default WorkshopCard;

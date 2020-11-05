@@ -3,8 +3,8 @@ import { colors, fontSizes } from '../style/theme';
 
 export const Form = styled.input`
 	width: 65%;
-	height: 2.4rem;
-	padding: 0.8rem;
+	height: 2.55rem;
+	padding: 0.9rem;
 	font-size: ${fontSizes.small};
 	font-weight: light;
 	outline: none;

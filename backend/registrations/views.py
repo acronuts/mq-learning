@@ -24,7 +24,8 @@ class RegistrationView(GenericAPIView):
         request = Company.objects.filter(name__icontains=request.data['company'])
         if request:
             company = request[0]
-        new_user = User(email=email, first_name=first_name, last_name=last_name, company=company, is_active=False)
+        new_user = User(email=email, username=email, first_name=first_name, last_name=last_name, company=company,
+                        is_active=False)
         new_user.save()
         registration = RegistrationProfile(user=new_user)
         registration.save()

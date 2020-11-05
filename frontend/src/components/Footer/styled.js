@@ -21,7 +21,7 @@ export const RightSide = styled.div`
 	text-align: right;
 	width: 50%;
 	i {
-		font-size: 1.2rem;
+		font-size: 1.4rem;
 		margin: 0 1rem;
 		cursor: pointer;
 	}

@@ -44,10 +44,10 @@ INSTALLED_APPS = [
     'corsheaders',
     # Own Apps
     'users',
+    'wallet',
     'registrations',
     'companies',
     'workshops',
-    'wallet',
 ]
 
 MIDDLEWARE = [

@@ -10,10 +10,34 @@ const Footer = () => {
 					<p>MQ Learning &copy; 2020</p>
 				</LeftSide>
 				<RightSide>
-					<i className='fab fa-facebook-f social-link'></i>
-					<i className='fab fa-twitter social-link'></i>
-					<i className='fab fa-google-plus-g social-link'></i>
-					<i className='fab fa-instagram social-link'></i>
+					<a
+						href='https://www.linkedin.com/mynetwork/'
+						rel='noreferrer'
+						target='_blank'
+					>
+						<i className='fab fa-linkedin social-link'></i>
+					</a>
+					<a
+						href='https://www.facebook.com/meaning.quotient/'
+						rel='noreferrer'
+						target='_blank'
+					>
+						<i className='fab fa-facebook-f social-link'></i>
+					</a>
+					<a
+						href='https://www.instagram.com/meaningquo/'
+						rel='noreferrer'
+						target='_blank'
+					>
+						<i className='fab fa-instagram social-link'></i>
+					</a>
+					<a
+						href='https://soundcloud.com/user-806321828'
+						rel='noreferrer'
+						target='_blank'
+					>
+						<i className='fab fa-soundcloud social-link'></i>
+					</a>
 				</RightSide>
 			</FooterWrapper>
 		</Container>
