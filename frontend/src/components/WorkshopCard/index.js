@@ -13,7 +13,7 @@ const WorkshopCard = ({ workshop }) => {
                 <CardWrapper>
                     <ContentWrapper>
                         <div className='workshop-info'>
-                            <p>Title</p>
+                            <p className ='Title'>Title</p>
                             <p>Location</p>
                             <p>Start Date, Start Time</p>
                             <p>Description</p>

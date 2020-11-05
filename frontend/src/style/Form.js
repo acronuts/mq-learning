@@ -19,4 +19,12 @@ export const Form = styled.input`
 			width: 40%;
 			margin: 0.6rem 0.2rem;
 		`};
+
+	${props =>
+		props.searchForm &&
+		css`
+			width: 15rem;
+			margin: 0.6rem 0.2rem;
+	`};
+	
 `;
