@@ -4,7 +4,7 @@ from companies.models import Company
 from companies.serializers import CompanySerializer
 from rest_framework.permissions import IsAuthenticated
 
-from backend.companies.permissions import IsAdminUser
+from companies.permissions import IsAdminUser
 
 
 class ListCompanyView(ListAPIView):
