@@ -1,11 +1,23 @@
 import React from 'react';
-import ProfilePage from '../components/NavDashboard';
+import NavDashboard from '../components/NavDashboard';
+import TopBar from '../components/Topbar';
+import {Fragment} from 'react'
 
 
-const Profile = () => {
-	return <ProfilePage />;
+
+const Test = () => {
+
+	return (
+	
+	<Fragment>
+		<TopBar />
+		<NavDashboard/>)
+	</Fragment>
+
+	)
+	
 };
 
 
 
-export default Profile;
+export default Test;
