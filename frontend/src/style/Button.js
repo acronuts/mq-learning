@@ -20,7 +20,7 @@ export const Button = styled.button`
 	${props => {
 		if (props.btnNavDashboard) {
 			return `
-			width: 15rem;
+			width: 12rem;
 			height: 4rem;
 		`;
 	}
@@ -67,18 +67,20 @@ export const Button = styled.button`
 		`}
 
 	${props =>
-		props.ReserveBtn &&
+		props.moreInfoBtn &&
 		css`
-			padding: 0.7rem 1.5rem;
+			padding: 0.5rem 1rem;
 			letter-spacing: 0.1rem;
 			font-size: ${fontSizes.small};
-			margin-top: 1.3rem;
+			margin-top: 1rem;
 			font-size: ${fontSizes.small};
-			font-weight: 300;
+			font-weight: 400;
 			border-radius: 1.5rem;
+			background: ${colors.purpleMain};
+			color: ${colors.white};
 			:hover {
-				background: ${colors.white};
-				color: ${colors.purpleMain};
+				background: ${colors.purpleMainHover};
+				color: ${colors.white};
 			}
 		`}
 `;

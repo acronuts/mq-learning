@@ -10,7 +10,6 @@ const WorkshopCard = ({ workshop }) => {
 
     return (
         <>
-            {/* <Container workshopCardContainer> */}
                 <CardWrapper>
                     <ContentWrapper>
                         <div className='workshop-info'>
@@ -18,7 +17,6 @@ const WorkshopCard = ({ workshop }) => {
                             <p>Location</p>
                             <p>Start Date, Start Time</p>
                             <p>Description</p>
-                            <p>Details</p>
                             {/* <p>{workshop.title}</p>
                             <p>{workshop.location}</p>
                             <p>{workshop.scheduling.startDateFormatted}, {workshop.scheduling.startTimeFormatted}</p>
@@ -27,10 +25,11 @@ const WorkshopCard = ({ workshop }) => {
                         </div>
                     </ContentWrapper>
                     <ReserveBtnWrapper>
-                        <Button ReserveBtn>RESERVE</Button>
+                        <Button moreInfoBtn onClick={() => history.push('/workshop-single')}>
+                            More Info
+                        </Button>
                     </ReserveBtnWrapper>
                 </CardWrapper>
-            {/* </Container> */}
         </>
     )
 }
