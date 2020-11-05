@@ -22,7 +22,6 @@ export const Button = styled.button`
 			return `
 			width: 15rem;
 			height: 4rem;
-		
 		`;
 	}
 	}}

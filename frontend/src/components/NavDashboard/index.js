@@ -15,7 +15,7 @@ const NavigateDashboard  = () => {
 	
 
 	return (
-		<Container>
+		<Container size>
 	
 
 			<NavbarDiV>

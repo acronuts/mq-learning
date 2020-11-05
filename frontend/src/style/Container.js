@@ -29,4 +29,6 @@ export const Container = styled.section`
 			justify-content: center;
 			height: 80vh;
 		`}
+	
+		
 `;
