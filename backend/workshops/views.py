@@ -1,6 +1,6 @@
 from datetime import datetime
 import pytz
-from rest_framework.generics import ListAPIView, GenericAPIView
+from rest_framework.generics import ListAPIView, GenericAPIView, RetrieveAPIView
 from rest_framework.response import Response
 
 from workshops.models import Workshop
@@ -15,6 +15,13 @@ present = pytz.utc.localize(present)
 class ListWorkshopView(ListAPIView):
     queryset = Workshop.objects.all()
     serializer_class = WorkshopSerializer
+
+
+class ListWorkshopByIDView(RetrieveAPIView):
+    queryset = Workshop.objects.all()
+    serializer_class = WorkshopSerializer
+    lookup_url_kwarg = 'workshop_id'
+    permission_classes = []
 
 
 class ReserveWorkshopView(GenericAPIView):
