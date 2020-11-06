@@ -2,30 +2,35 @@ import styled from 'styled-components';
 import { colors, fontSizes } from '../../style/theme';
 
 export const TopBarHeader = styled.div`
-	width: 100vw;
-	height: 6rem;
+	width: 100%;
+	height: 10rem;
 	display: flex;
-	background-color: rgba(255, 255, 255, 0);
+	justify-content: space-between;
 	z-index: 2;
+	/* background-color: red; */
 	/* position: absolute; */
 `;
 
 export const TopBarLeft = styled.div`
-	width: 33%;
+	width: 20%;
 	display: flex;
-	justify-content: flex-start;
+	align-items: center;
+	justify-content: center;
+	/* background-color: red; */
 `;
 
 export const TopBarCenter = styled.div`
-	width: 33%;
+	width: 50%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	/* background-color: blue; */
 `;
 
 export const TopBarRight = styled.div`
-	width: 33%;
+	width: 30%;
 	display: flex;
+	/* background-color: green; */
 	flex-direction: row-reverse;
 	justify-content: flex-start;
 `;
@@ -34,9 +39,8 @@ export const MQLogoWrapper = styled.div`
 `;
 
 export const MQLogo = styled.img`
-	width: 5rem;
-	height: 5rem;
-	margin-left: 2.5rem;
+	width: 7rem;
+	height: auto;
 	align-self: center;
 `;
 
@@ -47,8 +51,8 @@ export const AvatarContainer = styled.div`
 
 export const Avatar = styled.img`
 	width: 5rem;
-	height: 4rem;
-	border-radius: 0.5rem;
+	height: 5rem;
+	border-radius: 5rem;
 	align-self: center;
 `;
 
@@ -60,7 +64,6 @@ export const UserProfileContainer = styled.div`
 `;
 
 export const UserWelcome = styled.p`
-	color: ${colors.white};
 	font-size: ${fontSizes.normal};
 	padding-top: 1rem;
 	line-height: 1.5rem;
@@ -73,7 +76,7 @@ export const ViewProfileBtnWrapper = styled.div`
 `;
 
 export const ViewProfileBtn = styled.button`
-	padding: 0.2rem 0.2rem;
+	padding: 0.5rem 0.4rem;
 	font-size: ${fontSizes.small};
 	background: ${colors.purpleMain};
 	color: ${colors.white};
@@ -90,13 +93,11 @@ export const ViewProfileBtn = styled.button`
 `;
 
 export const TokensValidText = styled.p`
-	font-size: ${fontSizes.normal};
-	color: ${colors.white};
+	font-size: ${fontSizes.medium};
 	align-self: center;
 `;
 
 export const CompanyText = styled.p`
 	font-size: ${fontSizes.normal};
-	color: ${colors.white};
 	align-self: center;
 `;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, fontSizes } from '../../style/theme';
+import { fontSizes } from '../../style/theme';
 
 export const TopProfileBar = styled.section`
 	width: 100%;
@@ -30,11 +30,8 @@ export const TopProfileBar = styled.section`
 		padding: 2.5rem 1.5rem;
 		border-radius: 0.5rem;
 		/* background: rgba(255, 255, 255, 0.5); */
-		margin: 0 auto;
 		display: flex;
-		text-align: left;
-		justify-content: center;
-		align-items: center;
+		align-items: flex-start;
 		p {
 			margin: 0.3rem 0;
 			font-size: ${fontSizes.normal};
@@ -42,6 +39,7 @@ export const TopProfileBar = styled.section`
 
 		.left-side {
 			width: 30%;
+			height: 100%;
 
 			h2 {
 				font-weight: 400;
@@ -50,9 +48,9 @@ export const TopProfileBar = styled.section`
 		}
 
 		.right-side {
+			height: 100%;
 			width: 40%;
 			padding: 0.4rem 0;
-			margin-top: 3rem;
 			display: flex;
 			flex-direction: column;
 			align-items: flex-start;
@@ -61,8 +59,6 @@ export const TopProfileBar = styled.section`
 
 		.tokens-container {
 			width: 30%;
-			height: 100%;
-			margin-top: 3rem;
 			padding: 1rem 2rem;
 			border-radius: 0.5rem;
 			background: rgba(255, 255, 255, 0.5);

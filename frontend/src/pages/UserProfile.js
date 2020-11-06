@@ -1,11 +1,25 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import UserProfilePage from '../components/UserProfilePage';
 import Footer from '../components/Footer';
+import userAction from '../store/actions/userAction';
 
 const UserProfile = () => {
+	const dispatch = useDispatch();
+	const [user, setUser] = useState([]);
+
+	useEffect(() => {
+		const getData = async () => {
+			const data = await dispatch(userAction());
+			// console.log(data);
+			setUser(data);
+		};
+		getData();
+	}, [dispatch]);
+
 	return (
 		<Fragment>
-			<UserProfilePage />
+			<UserProfilePage user={user} />
 			<Footer />
 		</Fragment>
 	);

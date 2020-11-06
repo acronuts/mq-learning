@@ -1,12 +1,11 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import { Container } from '../../style/Container';
 import { Button } from '../../style/Button';
 import { NavbarDiV, SectionWorkshop, NavigationWrapper } from './styled';
 import WorkshopCard from '../WorkshopCard';
 
-const NavigateDashboard = () => {
+const NavigateDashboard = ({ workshops }) => {
 	const [active, setActive] = useState('workshop');
-	// later onw the list will be replaced for fetching
 
 	return (
 		<Container>
@@ -30,68 +29,52 @@ const NavigateDashboard = () => {
 				</NavbarDiV>
 
 				<SectionWorkshop>
-					<Fragment>
-						{active === 'workshop' ? (
-							<ul>
-								<WorkshopCard zoom />
-								<WorkshopCard zoom />
-								<WorkshopCard zoom />
-								<WorkshopCard zoom />
-								<WorkshopCard zoom />
-								<WorkshopCard zoom />
-								<WorkshopCard zoom />
-								<WorkshopCard zoom />
-								<WorkshopCard zoom />
-								<WorkshopCard zoom />
-								<WorkshopCard zoom />
-								<WorkshopCard zoom />
-							</ul>
-						) : null}
-					</Fragment>
-					<Fragment>
-						{active === 'scheduledWorkshop' ? (
-							<ul>
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-							</ul>
-						) : null}
-					</Fragment>
-					<Fragment>
-						{active === 'attendedWorkshop' ? (
-							<ul>
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-								<WorkshopCard Zoom />
-							</ul>
-						) : null}
-					</Fragment>
+					{active === 'workshop' ? (
+						<Fragment>
+							{workshops.length ? (
+								workshops.map(workshop => (
+									<WorkshopCard Zoom workshop={workshop} key={workshop.id} />
+								))
+							) : (
+								<h1>loading..</h1>
+							)}
+						</Fragment>
+					) : null}
+					{active === 'scheduledWorkshop' ? (
+						<Fragment>
+							{workshops.length !== 0 ? (
+								workshops.map(workshop => (
+									<WorkshopCard Zoom workshop={workshop} key={workshop.id} />
+								))
+							) : (
+								<h1>loading..</h1>
+							)}
+						</Fragment>
+					) : null}
+					{active === 'attendedWorkshop' ? (
+						<Fragment>
+							{workshops.length !== 0 ? (
+								workshops.map(workshop => (
+									<WorkshopCard Zoom workshop={workshop} key={workshop.id} />
+								))
+							) : (
+								<h1>loading..</h1>
+							)}
+						</Fragment>
+					) : null}
 
-					<Fragment>
-						{active === 'resources' ? (
-							<ul>
-								<WorkshopCard Zoom />
-							</ul>
-						) : null}
-					</Fragment>
+					{/* todo: create resources component */}
+					{active === 'resources' ? (
+						<Fragment>
+							{workshops.length !== 0 ? (
+								workshops.map(workshop => (
+									<WorkshopCard Zoom workshop={workshop} key={workshop.id} />
+								))
+							) : (
+								<h1>loading..</h1>
+							)}
+						</Fragment>
+					) : null}
 				</SectionWorkshop>
 			</NavigationWrapper>
 		</Container>

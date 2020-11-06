@@ -10,7 +10,7 @@ def user_directory_path(instance, filename):
 
 class Workshop(models.Model):
     title = models.CharField(max_length=100)
-    subtitle = models.CharField(max_length=100, blank=True)
+    subtitle = models.CharField(max_length=255, blank=True)
     description = models.TextField()
     banner = models.ImageField(upload_to=user_directory_path, blank=True)
     location = models.CharField(max_length=100)

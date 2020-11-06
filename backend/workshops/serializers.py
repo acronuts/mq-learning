@@ -11,5 +11,5 @@ class WorkshopSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Workshop
-        fields = ['title', 'description', 'banner', 'location', 'created', 'date_start', 'date_end', 'cost',
+        fields = ['id', 'title', 'subtitle', 'description', 'banner', 'location', 'created', 'date_start', 'date_end', 'cost',
                   'max_seats', 'attendees', 'number_of_attendees']

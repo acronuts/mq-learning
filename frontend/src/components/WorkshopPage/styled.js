@@ -57,23 +57,13 @@ export const Showcase = styled.section`
 	height: 100%;
 	min-height: 30rem;
 	margin: 1rem 0;
-	background: url(${mockupBanner});
+	background: url(${props => props.banner});
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
 	border-radius: 0.3rem;
 	box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.75);
-
-	::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		border-radius: 0.3rem;
-	}
 `;
 
 export const MainContent = styled.section`
