@@ -1,15 +1,10 @@
 import React, { useState, Fragment } from 'react';
 import Select from 'react-select'; 
+import { WORKSHOPS_FILTER } from '../../store/actionTypes';
 
 
 
-const options =[ 
-    {label:'matias', value: 'loco'},
-    {label:'joost', value: 'loca'},
-    {label:'stephan', value: 'locos'},
-    {label:'Romulo', value: 'locas'},
-    {label:'guillaume', value: 'Demente'},
-]; 
+const 
 
 
 const SearchForm = () => {
@@ -18,7 +13,20 @@ const SearchForm = () => {
     
         <Fragment>
 
-            <Select options  = {options}  />
+            <Select options  = { workshops}
+
+
+
+
+
+
+
+            },
+            autoFocus : True,
+            isMulti : True, 
+            
+            
+            />
               
         
         </Fragment>
