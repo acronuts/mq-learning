@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Container } from '../../style/Container';
 import { Form } from '../../style/Form';
 import { Button } from '../../style/Button';
+import { useHistory } from 'react-router-dom';
+import { login } from '../../store/actions/loginAction';
+import { connect } from 'react-redux';
 
 import {
 	LoginContainer,
@@ -12,8 +15,19 @@ import {
 	RegMessage,
 } from './styled';
 
-const LoginPage = () => {
+const LoginPage = (props) => {
 	const [currentStage, setCurrentStage] = useState(0);
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const history = useHistory();
+
+	const loginBtnHandler = (e) => {
+		e.preventDefault();
+		props.dispatch(login({
+			email,
+			password
+		}, history));
+	}
 
 	const handleRegistration = e => {
 		e.preventDefault();
@@ -42,7 +56,7 @@ const LoginPage = () => {
 						</Title>
 					) : (
 						<Title>
-							<h1>Sign in</h1>
+							<h1>Sign Up</h1>
 						</Title>
 					)}
 
@@ -111,9 +125,9 @@ const LoginPage = () => {
 						<h1>Login</h1>
 					</Title>
 					<InputsContainer>
-						<Form placeholder='Email' required />
-						<Form placeholder='Password' required />
-						<Button registerLoginBtn>Login</Button>
+						<Form type='text' value={email} onChange={e => setEmail(e.currentTarget.value)} placeholder='Email' required />
+						<Form type='password' value={password} onChange={e => setPassword(e.currentTarget.value)} placeholder='Password' required />
+						<Button registerLoginBtn onClick={loginBtnHandler}>Login</Button>
 					</InputsContainer>
 				</RightSide>
 			</LoginContainer>
@@ -123,4 +137,4 @@ const LoginPage = () => {
 
 //todo login and registration functionality
 
-export default LoginPage;
+export default connect()(LoginPage);
