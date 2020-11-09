@@ -66,23 +66,21 @@ class ReserveWorkshopView(GenericAPIView):
 
 
 class ListUserRegisteredWorkshopsView(ListAPIView):
-    queryset = Workshop.objects.all().order_by('date_start')
+    queryset = Workshop.objects.all()
     serializer_class = WorkshopSerializer
-    lookup_field = 'id'
     permission_classes = []
 
     def get_queryset(self):
-        return Workshop.objects.filter(attendees=self.kwargs['id'], date_start__gte=present)
+        return Workshop.objects.filter(attendees=self.request.user, date_start__gte=present).order_by('date_start')
 
 
 class ListUserAttendedWorkshopsView(ListAPIView):
-    queryset = Workshop.objects.all().order_by('date_start')
+    queryset = Workshop.objects.all()
     serializer_class = WorkshopSerializer
-    lookup_field = 'id'
     permission_classes = []
 
     def get_queryset(self):
-        return Workshop.objects.filter(attendees=self.kwargs['id'], date_start__lt=present)
+        return Workshop.objects.filter(attendees=self.request.user, date_start__lt=present).order_by('date_start')
 
 
 class CreateWorkshopView(CreateAPIView):

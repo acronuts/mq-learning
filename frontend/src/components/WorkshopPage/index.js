@@ -4,10 +4,16 @@ import { Container } from '../../style/Container';
 import { TopBarWrapper, Showcase, MainContent } from './styled';
 import mqlogo from '../../assets/images/mq-logo.jpg';
 import { Button } from '../../style/Button';
+import moment from 'moment';
 
 const WorkshopPage = ({ singleWorkshop }) => {
 	
 	const history = useHistory();
+
+	const dateToFormat = (date) => {
+		// return moment(date).format('D MMM YYYY, h:mm A');
+		return moment(date).format('LLLL') //localized timezone date and time format
+	}
 
 	return (
 		<Container workshop>
@@ -17,7 +23,7 @@ const WorkshopPage = ({ singleWorkshop }) => {
 				</div>
 				<div className='workshop-info-container'>
 					<h1>{singleWorkshop.title}</h1>
-					<p>{singleWorkshop.date_start}</p>
+					<p>{dateToFormat(singleWorkshop.date_start)}</p>
 					<p>{singleWorkshop.location}</p>
 					<p>{singleWorkshop.subtitle}</p>
 				</div>
@@ -29,7 +35,7 @@ const WorkshopPage = ({ singleWorkshop }) => {
 			<MainContent>
 				<div className='time-location-container'>
 					<h1>Time & Location</h1>
-					<p>{singleWorkshop.date_start}</p>
+					<p>{dateToFormat(singleWorkshop.date_start)}</p>
 					<p>{singleWorkshop.location}</p>
 				</div>
 				<div className='workshop-details-container'>

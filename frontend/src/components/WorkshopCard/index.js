@@ -6,6 +6,25 @@ import { Button } from '../../style/Button';
 const WorkshopCard = ({ workshop }) => {
 	const history = useHistory();
 
+	const dateToFormat = (date) => {
+		// return moment(date).format('D MMM YYYY, h:mm A');
+		return moment(date).format('LLL') //localized timezone date and time format
+	}
+
+	const dateCheck = (date) => {
+		// return moment(date).format('D MMM YYYY');
+		return moment(date).format('LL'); //localized timezone date format
+	}
+
+	const dateToTime = (date) => {
+		// return moment(date).format('h:mm A');
+		return moment(date).format('LT'); //localized timezone time format
+	}
+
+	// const dateToDay = (date) => {
+	// 	return moment(date).format('dddd');
+	// }
+
 	return (
 		<>
 			<CardWrapper>
@@ -14,7 +33,8 @@ const WorkshopCard = ({ workshop }) => {
 						<p>{workshop.title}</p>
 						<p>{workshop.location}</p>
 						<p>
-							{workshop.date_start} --- {workshop.date_end}
+							{dateToFormat(workshop.date_start)} --- {dateCheck(workshop.date_start) === dateCheck(workshop.date_end) ? dateToTime(workshop.date_end) : dateToFormat(workshop.date_end) }
+							{/* {dateToFormat(workshop.date_start)} --- {dateToFormat(workshop.date_end)} */}
 						</p>
 						<p>{workshop.subtitle}</p>
 					</div>

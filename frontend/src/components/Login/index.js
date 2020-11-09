@@ -4,6 +4,8 @@ import { Form } from '../../style/Form';
 import { Button } from '../../style/Button';
 import { useHistory } from 'react-router-dom';
 import { login } from '../../store/actions/loginAction';
+import { registrationAction } from '../../store/actions/registrationAction'
+import { validationAction } from '../../store/actions/validationAction'
 import { connect } from 'react-redux';
 
 import {
@@ -19,6 +21,13 @@ const LoginPage = (props) => {
 	const [currentStage, setCurrentStage] = useState(0);
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [regEmail, setRegEmail] = useState('');
+	const [regPassword, setRegPassword] = useState('');
+	const [code, setValidationCode] = useState('');
+    const [first_name, setUserFirstName] = useState('');
+    const [last_name, setUserLastName] = useState('');
+	const [password_repeat, setPasswordRepeat] = useState('');
+	const [company, setCompany] = useState('');
 	const history = useHistory();
 
 	const loginBtnHandler = (e) => {
@@ -31,7 +40,32 @@ const LoginPage = (props) => {
 
 	const handleRegistration = e => {
 		e.preventDefault();
-		setCurrentStage(currentStage + 1);
+		if (regEmail.length === 0 || first_name.length === 0 || last_name.length === 0 || company.length === 0) {
+			alert('Please complete all fields!');
+		} else {
+			setCurrentStage(currentStage + 1);
+			props.dispatch(registrationAction({
+				email: regEmail,
+				first_name,
+				last_name,
+				company
+			}, history));
+		}
+	};
+
+	const handleValidation = e => {
+		e.preventDefault();
+		if (regPassword !== password_repeat) {
+			alert("Passwords do not match!")
+		} else {
+			setCurrentStage(currentStage + 1);
+			props.dispatch(validationAction({
+				email: regEmail,
+				code,
+				password: regPassword,
+				password_repeat,
+			}, history));
+		}
 	};
 
 	// Timeout function to take registration
@@ -65,11 +99,11 @@ const LoginPage = (props) => {
 						<InputsContainer registration>
 							<div>
 								{/* First Name and Last Name inputs are half of the other inputs */}
-								<Form placeholder='First Name' regHalfInput />
-								<Form placeholder='Last Name' regHalfInput />
+								<Form type='text' value={first_name} onChange={e => setUserFirstName(e.currentTarget.value)} placeholder='First Name' required regHalfInput />
+								<Form type='text' value={last_name} onChange={e => setUserLastName(e.currentTarget.value)} placeholder='Last Name' required regHalfInput />
 							</div>
-							<Form placeholder='Email' />
-							<Form placeholder='Company' />
+							<Form type='text' value={regEmail} onChange={e => setRegEmail(e.currentTarget.value)} placeholder='Email' required/>
+							<Form type='text' value={company} onChange={e => setCompany(e.currentTarget.value)} placeholder='Company' required />
 							{/* If the button is pressed, first step is done and user
 								should see a message */}
 							<Button registerLoginBtn onClick={handleRegistration}>
@@ -97,14 +131,14 @@ const LoginPage = (props) => {
 					{currentStage === 2 ? (
 						<InputsContainer registrationVerifyCode>
 							<div>
-								<Form placeholder='Email' regHalfInput />
-								<Form placeholder='Verification Code' regHalfInput />
+								<Form type='text' value={regEmail} onChange={e => setRegEmail(e.currentTarget.value)} placeholder='Email' required regHalfInput />
+								<Form type='text' value={code} onChange={e=> setValidationCode(e.currentTarget.value)} placeholder='Verification Code' required regHalfInput />
 							</div>
 							<div>
-								<Form placeholder='Password' regHalfInput />
-								<Form placeholder='Repeat Password' regHalfInput />
+								<Form type='password' value={regPassword} onChange={e => setRegPassword(e.currentTarget.value)} placeholder='Password' required regHalfInput />
+								<Form type='password' value={password_repeat} onChange={e => setPasswordRepeat(e.currentTarget.value)} placeholder='Repeat Password' required regHalfInput />
 							</div>
-							<Button registerLoginBtn onClick={handleRegistration}>
+							<Button registerLoginBtn onClick={handleValidation}>
 								Validate Code
 							</Button>
 						</InputsContainer>

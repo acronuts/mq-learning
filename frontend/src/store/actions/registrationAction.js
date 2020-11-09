@@ -14,5 +14,5 @@ export const registrationAction = email => (dispatch, getState) => {
         method: 'POST'
     };
 
-    fetch(`${baseUrl}/backend/api/auth/registration/`, config);
+    fetch(`${baseUrl}/backend/api/registration/`, config);
 }

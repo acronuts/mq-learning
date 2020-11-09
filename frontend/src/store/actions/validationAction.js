@@ -17,9 +17,9 @@ export const validationAction = userData => async (dispatch, getState) => {
     const config = {
         headers,
         body,
-        method: 'PATCH'
+        method: 'POST'
     };
 
     dispatch(validation(userData));
-    await fetch(`${ baseUrl }/backend/api/auth/registration/validation/`, config);
+    await fetch(`${ baseUrl }/backend/api/registration/validate/`, config);
 }

@@ -3,8 +3,8 @@ import { USER_REGISTRATION } from "../actionTypes";
 const initialState = {
     email: '',
     code: '',
-    firstname: '',
-    lastname: '',
+    first_name: '',
+    last_name: '',
     company: '',
     password: '',
     password_repeat: '',
