@@ -8,8 +8,9 @@ const Test = () => {
 
 	return (
 	
+	<Fragment>
 	<SearchButton />
-	
+	</Fragment>
 
 	)
 	

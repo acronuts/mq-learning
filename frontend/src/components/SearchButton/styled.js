@@ -1,9 +1,16 @@
-import styled, { css } from 'styled-components';
-import { colors, fontSizes } from '../../style/theme';
+import styled from 'styled-components';
+import { colors } from '../../style/theme';
 
 
 
-export const SearchButton = styled.select`
+export const SearchBar=styled.input`
+    height: 2.55rem;
+    width: 15rem; 
+    border: 1px; 
+    border-radius: 0.3rem;
+
 
 
 `; 
+
+
