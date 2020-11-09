@@ -70,6 +70,9 @@ export const TopProfileBar = styled.section`
 			p {
 				margin: 0.2rem 0;
 				font-size: ${fontSizes.normal};
+				span {
+					margin-left: 0.2rem;
+				}
 			}
 		}
 	}

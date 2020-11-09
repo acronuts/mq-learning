@@ -20,8 +20,8 @@ const MainPage = () => {
 		};
 		getData();
 	}, [dispatch]);
-	
 
+	//* Proably an error in the company serializer, joost is figuring it out
 	useEffect(() => {
 		const getData = async () => {
 			const data = await dispatch(userAction());
@@ -34,9 +34,7 @@ const MainPage = () => {
 		<Fragment>
 			<TopBar user={user} />
 			<Container>
-				{workshops.length !== 0 ? (
-					<NavigateDashboard workshops={workshops} />
-				) : null}
+				{workshops.length ? <NavigateDashboard workshops={workshops} /> : null}
 			</Container>
 			<Footer />
 		</Fragment>

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { colors, fontSizes } from '../../style/theme';
-import mockupBanner from '../../assets/images/mockup-banner.jpg';
 
 export const TopBarWrapper = styled.section`
 	max-height: 20rem;

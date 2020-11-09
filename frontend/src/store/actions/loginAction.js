@@ -24,6 +24,7 @@ export const login = (data, history) => async (dispatch, getState) => {
     const user = await response.json();
     const {access} = user;
 
+
     if(access) {
         localStorage.setItem('token', access)
         dispatch(loginAction({ user: user, authenticated: true }));

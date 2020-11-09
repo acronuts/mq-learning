@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Container } from '../../style/Container';
 import { Button } from '../../style/Button';
 import { NavbarDiV, SectionWorkshop, NavigationWrapper } from './styled';

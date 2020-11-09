@@ -15,7 +15,7 @@ const Routes = () => {
 				<Route exact path='/mainpage/' component={AuthComponent(MainPage)} />
 				<Route
 					exact
-					path='/workshop-single/'
+					path='/workshop-single/:workshopId/'
 					component={AuthComponent(Workshop)}
 				/>
 				<Route
@@ -23,12 +23,8 @@ const Routes = () => {
 					path='/user-profile/'
 					component={AuthComponent(UserProfile)}
 				/>
+
 				<Route exact path='/test/' component={TestPage} />
-				<Route
-					exact
-					path='/workshop-single/:workshopId/'
-					component={Workshop}
-				/>
 			</Switch>
 		</Router>
 	);

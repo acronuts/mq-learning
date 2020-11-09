@@ -19,7 +19,7 @@ class Workshop(models.Model):
     date_end = models.DateTimeField()
     cost = models.IntegerField()
     max_seats = models.IntegerField(default=20)
-    attendees = models.ManyToManyField(to=User, related_name='m2m_workshops')
+    attendees = models.ManyToManyField(to=User, related_name='m2m_workshops', blank=True)
 
     def __str__(self):
         return f'{self.title}'

@@ -13,4 +13,4 @@ class CompanyAccount(models.Model):
     company = models.ForeignKey(to=Company, related_name='fk_company_companyaccount', on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.company} has a credit of {self.credit} and a debit of {self.debit}'
+        return f'{self.company} has an available credit {self.company.available_credit["total_available"]}'

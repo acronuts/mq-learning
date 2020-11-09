@@ -11,7 +11,6 @@ const UserProfile = () => {
 	useEffect(() => {
 		const getData = async () => {
 			const data = await dispatch(userAction());
-			// console.log(data);
 			setUser(data);
 		};
 		getData();

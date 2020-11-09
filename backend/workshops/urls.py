@@ -1,7 +1,7 @@
 from django.urls import path
 
 from workshops.views import ListWorkshopView, ReserveWorkshopView, ListUserRegisteredWorkshopsView, \
-    ListUserAttendedWorkshopsView, ListWorkshopByIDView
+    ListUserAttendedWorkshopsView, ListWorkshopByIDView, CreateWorkshopView, DeleteWorkshopByIDView
 
 urlpatterns = [
     path('', ListWorkshopView.as_view()),
@@ -9,4 +9,6 @@ urlpatterns = [
     path('reserve/<int:workshop_id>/', ReserveWorkshopView.as_view()),
     path('user/registered/<int:id>/', ListUserRegisteredWorkshopsView.as_view()),
     path('user/attended/<int:id>/', ListUserAttendedWorkshopsView.as_view()),
+    path('create/', CreateWorkshopView.as_view()),
+    path('delete/<int:workshop_id>/', DeleteWorkshopByIDView.as_view()),
 ]

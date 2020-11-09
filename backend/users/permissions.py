@@ -1,7 +1,7 @@
 from rest_framework.permissions import BasePermission
 
 
-class IsAdminUser(BasePermission):
+class IsCompanyAdmin(BasePermission):
 
     def has_permission(self, request, view):
         return bool(request.user and request.user.isAdmin)

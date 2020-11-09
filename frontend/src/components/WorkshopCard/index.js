@@ -2,9 +2,14 @@ import React from 'react';
 import { CardWrapper, ContentWrapper, ReserveBtnWrapper } from './styled';
 import { useHistory } from 'react-router-dom';
 import { Button } from '../../style/Button';
+import moment from 'moment';
 
 const WorkshopCard = ({ workshop }) => {
 	const history = useHistory();
+
+	const dateToFormat = (date) => {
+		return moment(date).format('DD MMMM YYYY, h:mm A');
+	}
 
 	return (
 		<>
@@ -14,7 +19,7 @@ const WorkshopCard = ({ workshop }) => {
 						<p>{workshop.title}</p>
 						<p>{workshop.location}</p>
 						<p>
-							{workshop.date_start} --- {workshop.date_end}
+							{dateToFormat(workshop.date_start)} --- {dateToFormat(workshop.date_end)}
 						</p>
 						<p>{workshop.subtitle}</p>
 					</div>

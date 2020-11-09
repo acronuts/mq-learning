@@ -6,7 +6,7 @@ import mqlogo from '../../assets/images/mq-logo.jpg';
 import { Button } from '../../style/Button';
 
 const WorkshopPage = ({ singleWorkshop }) => {
-	console.log(singleWorkshop);
+	
 	const history = useHistory();
 
 	return (

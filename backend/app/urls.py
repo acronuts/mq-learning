@@ -32,6 +32,7 @@ urlpatterns = [
     path('backend/api/registration/', include('registrations.urls')),
     path('backend/api/companies/', include('companies.urls')),
     path('backend/api/workshops/', include('workshops.urls')),
+    path('backend/api/accounts/', include('wallet.urls')),
 ]
 
 if settings.DEBUG:

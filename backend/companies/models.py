@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Sum, F
 
 
 class Company(models.Model):
@@ -12,3 +13,7 @@ class Company(models.Model):
 
     def __str__(self):
         return f'ID {self.pk}: {self.name}'
+
+    @property
+    def available_credit(self):
+        return self.fk_company_companyaccount.all().aggregate(total_available=Sum(F('credit') - F('debit')))

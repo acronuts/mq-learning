@@ -6,6 +6,7 @@ import { Button } from '../../style/Button';
 // import NavigateDashboard from '../NavDashboard';
 
 const UserProfilePage = ({ user }) => {
+
 	const fullName = `${user.first_name} ${user.last_name}`;
 
 	return (
@@ -21,7 +22,7 @@ const UserProfilePage = ({ user }) => {
 					<div className='left-side'>
 						<h2>{fullName}</h2>
 						<p>{user.email}</p>
-						<p>{user.company}</p>
+						<p>{user.company ? user.company.name : null}</p>
 					</div>
 					<div className='right-side'>
 						<p>
@@ -32,11 +33,11 @@ const UserProfilePage = ({ user }) => {
 					<div className='tokens-container'>
 						<p>
 							Tokens Remaining:
-							{user.available_credit ? (
-								user.available_credit.total_available
-							) : (
-								<h1>loading...</h1>
-							)}
+							<span>
+								{user.available_credit
+									? user.available_credit.total_available
+									: null}
+							</span>
 						</p>
 						<p>expiry date: 20/03/2021</p>
 					</div>

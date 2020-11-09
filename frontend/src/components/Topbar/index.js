@@ -33,11 +33,9 @@ const TopBar = ({ user }) => {
 				<TopBarCenter>
 					<TokensValidText>
 						Tokens Remaining:{' '}
-						{user.available_credit ? (
-							user.available_credit.total_available
-						) : (
-							<h1>loading...</h1>
-						)}
+						{user.available_credit
+							? user.available_credit.total_available
+							: null}
 						<br></br>
 						Valid Until: 31 / 12 / 2020
 					</TokensValidText>
@@ -48,7 +46,7 @@ const TopBar = ({ user }) => {
 					</AvatarContainer>
 					<UserProfileContainer>
 						<UserWelcome>Welcome, {fullName}</UserWelcome>
-						<CompanyText>{user.company}</CompanyText>
+						<CompanyText>{user.company ? user.company.name : null}</CompanyText>
 						<ViewProfileBtnWrapper>
 							<ViewProfileBtn>
 								<Link to='/user-profile/'>Edit Profile</Link>
