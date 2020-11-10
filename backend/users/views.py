@@ -33,3 +33,14 @@ class ListUsersByCompanyView(ListAPIView):
 
     def get_queryset(self):
         return User.objects.filter(company=self.kwargs['id'])
+
+
+class ListColleaguesView(ListAPIView):
+    search_fields = ['first_name', 'last_name', 'email', 'city']
+    filter_backends = (filters.SearchFilter,)
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = []
+
+    def get_queryset(self):
+        return User.objects.filter(company=self.request.user.company)

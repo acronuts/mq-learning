@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
@@ -31,3 +31,9 @@ class CreditUserAccountView(GenericAPIView):
             debit = CompanyAccount(company=company, debit=credit_amount)
             debit.save()
             return Response(status=200, data=f'You have credited {credit_amount} credits to {owner}')
+
+
+class ListCompanyAccountView(ListAPIView):
+    queryset = CompanyAccount.objects.all()
+    serializer_class = CompanyAccountSerializer
+    permission_classes = []

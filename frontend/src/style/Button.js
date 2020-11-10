@@ -12,7 +12,6 @@ export const Button = styled.button`
 	letter-spacing: 0.1rem;
 	transition: linear 0.15s;
 	cursor: pointer;
-
 	:hover {
 		background: ${colors.purpleMainHover};
 	}
@@ -36,9 +35,6 @@ export const Button = styled.button`
 			color: ${colors.white};
 			font-size: ${fontSizes.small};
 			background: ${colors.purpleMain};
-			:hover {
-				background: ${colors.purpleMainHover};
-			}
 		`}
 
 	/* single workshop page */
@@ -50,9 +46,6 @@ export const Button = styled.button`
 			font-weight: 400;
 			color: ${colors.white};
 			background: ${colors.purpleMain};
-			:hover {
-				background: ${colors.purpleMainHover};
-			}
 		`}
 		
 	/* single workshop page */
@@ -64,9 +57,6 @@ export const Button = styled.button`
 			font-weight: 400;
 			color: ${colors.white};
 			background: ${colors.purpleMain};
-			:hover {
-				background: ${colors.purpleMainHover};
-			}
 		`}
 
 	${props =>
@@ -81,7 +71,6 @@ export const Button = styled.button`
 			background: ${colors.purpleMain};
 			color: ${colors.white};
 			:hover {
-				background: ${colors.purpleMainHover};
 				color: ${colors.white};
 			}
 		`}
@@ -91,11 +80,16 @@ export const Button = styled.button`
 		props.editProfileBtn &&
 		css`
 			padding: 0.5rem 1rem;
-			letter-spacing: 0.1rem;
+			margin: 0 0.6rem;
 			font-size: ${fontSizes.small};
 			font-weight: 300;
-			:hover {
-				background: ${colors.purpleMainHover};
-			}
+		`}
+
+		${props =>
+		props.modalBtn &&
+		css`
+			padding: 0.4rem 1.3rem;
+			font-size: ${fontSizes.normal};
+			font-weight: 300;
 		`}
 `;

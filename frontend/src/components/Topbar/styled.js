@@ -7,41 +7,53 @@ export const TopBarHeader = styled.div`
 	display: flex;
 	justify-content: space-between;
 	z-index: 2;
-	/* background-color: red; */
-	/* position: absolute; */
 `;
 
 export const TopBarLeft = styled.div`
-	width: 20%;
+	width: 25%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	/* background-color: red; */
 `;
 
 export const TopBarCenter = styled.div`
-	width: 50%;
+	width: 45%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	/* background-color: blue; */
 `;
 
 export const TopBarRight = styled.div`
 	width: 30%;
 	display: flex;
-	/* background-color: green; */
 	flex-direction: row-reverse;
 	justify-content: flex-start;
 `;
 export const MQLogoWrapper = styled.div`
+	width: 100%;
 	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	background: ${colors.white};
+	border-bottom-right-radius: 2rem;
+	border-top-left-radius: 2rem;
+
+	.logo-text {
+		font-size: ${fontSizes.large};
+		font-weight: 400;
+		margin-left: 1.5rem;
+
+		p:nth-child(2) {
+			margin-left: 1.8rem;
+		}
+	}
 `;
 
 export const MQLogo = styled.img`
 	width: 7rem;
 	height: auto;
 	align-self: center;
+	border-top-left-radius: 2rem;
 `;
 
 export const AvatarContainer = styled.div`
@@ -95,6 +107,8 @@ export const ViewProfileBtn = styled.button`
 export const TokensValidText = styled.p`
 	font-size: ${fontSizes.medium};
 	align-self: center;
+	display: flex;
+	flex-direction: column;
 `;
 
 export const CompanyText = styled.p`

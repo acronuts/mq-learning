@@ -4,7 +4,12 @@ import { Button } from '../../style/Button';
 import { NavbarDiV, SectionWorkshop, NavigationWrapper } from './styled';
 import WorkshopCard from '../WorkshopCard';
 
-const NavigateDashboard = ({ workshops }) => {
+const NavigateDashboard = ({
+	workshops,
+	scheduledWorkshops,
+	attendedWorkshops,
+	user,
+}) => {
 	const [active, setActive] = useState('workshop');
 
 	return (
@@ -33,29 +38,12 @@ const NavigateDashboard = ({ workshops }) => {
 						<Fragment>
 							{workshops.length ? (
 								workshops.map(workshop => (
-									<WorkshopCard Zoom workshop={workshop} key={workshop.id} />
-								))
-							) : (
-								<h1>loading..</h1>
-							)}
-						</Fragment>
-					) : null}
-					{active === 'scheduledWorkshop' ? (
-						<Fragment>
-							{workshops.length !== 0 ? (
-								workshops.map(workshop => (
-									<WorkshopCard Zoom workshop={workshop} key={workshop.id} />
-								))
-							) : (
-								<h1>loading..</h1>
-							)}
-						</Fragment>
-					) : null}
-					{active === 'attendedWorkshop' ? (
-						<Fragment>
-							{workshops.length !== 0 ? (
-								workshops.map(workshop => (
-									<WorkshopCard Zoom workshop={workshop} key={workshop.id} />
+									<WorkshopCard
+										Zoom
+										workshop={workshop}
+										key={workshop.id}
+										user={user}
+									/>
 								))
 							) : (
 								<h1>loading..</h1>
@@ -63,22 +51,50 @@ const NavigateDashboard = ({ workshops }) => {
 						</Fragment>
 					) : null}
 
-					{/* todo: create resources component */}
-					{active === 'resources' ? (
+					{active === 'scheduledWorkshop' ? (
 						<Fragment>
-							{workshops.length !== 0 ? (
-								workshops.map(workshop => (
-									<WorkshopCard Zoom workshop={workshop} key={workshop.id} />
+							{scheduledWorkshops.length ? (
+								scheduledWorkshops.map(scheduledWorkshop => (
+									<WorkshopCard
+										Zoom
+										key={scheduledWorkshop.id}
+										user={user}
+										workshop={scheduledWorkshop}
+									/>
 								))
 							) : (
-								<h1>loading..</h1>
+								<h4 style={message}>You are not registered in any event.</h4>
 							)}
 						</Fragment>
 					) : null}
+					{active === 'attendedWorkshop' ? (
+						<Fragment>
+							{attendedWorkshops.length ? (
+								attendedWorkshops.map(attendedWorkshop => (
+									<WorkshopCard
+										Zoom
+										key={attendedWorkshop.id}
+										user={user}
+										workshop={attendedWorkshop}
+									/>
+								))
+							) : (
+								<h4 style={message}>You haven't attended any event.</h4>
+							)}
+						</Fragment>
+					) : null}
+
+					{/* todo: create resources component */}
+					{active === 'resources' ? <h1>Resources</h1> : null}
 				</SectionWorkshop>
 			</NavigationWrapper>
 		</Container>
 	);
+};
+
+const message = {
+	'margin-top': '100px',
+	'font-weigth': '500',
 };
 
 export default NavigateDashboard;

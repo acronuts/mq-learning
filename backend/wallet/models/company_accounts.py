@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -14,3 +16,9 @@ class CompanyAccount(models.Model):
 
     def __str__(self):
         return f'{self.company} has an available credit {self.company.available_credit["total_available"]}'
+
+    @property
+    def expiry_date(self):
+        expiry_date = CompanyAccount.created.date() + timedelta(days=365)
+        # if CompanyAccount.credit > 0:
+        return expiry_date

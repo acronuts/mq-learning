@@ -11,10 +11,10 @@ export const TopBarWrapper = styled.section`
 	display: flex;
 
 	.logo-container {
-		width: 5%;
+		width: 10%;
 		display: flex;
 		align-items: flex-start;
-		justify-content: flex-start;
+		justify-content: center;
 
 		img {
 			margin-top: 0.5rem;
@@ -23,9 +23,9 @@ export const TopBarWrapper = styled.section`
 	}
 
 	.workshop-info-container {
-		width: 70%;
-		padding-left: 2.5rem;
+		width: 90%;
 		text-align: left;
+		position: relative;
 
 		h1 {
 			font-weight: 500;
@@ -34,20 +34,17 @@ export const TopBarWrapper = styled.section`
 		p {
 			width: 70%;
 			margin: 0.2rem 0;
+			font-size: ${fontSizes.normal};
 		}
-		p:nth-child(2) {
-			font-size: 1rem;
+		p:nth-child(5) {
+			text-align: right;
+			width: 20%;
+			position: absolute;
+			top: 100%;
+			transform: translateY(-100%);
+			right: 0;
+			font-size: ${fontSizes.medium};
 		}
-		p:nth-child(3) {
-			font-size: 1rem;
-		}
-	}
-
-	.btn-container {
-		width: 25%;
-		display: flex;
-		align-items: flex-end;
-		justify-content: flex-end;
 	}
 `;
 

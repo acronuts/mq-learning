@@ -12,17 +12,13 @@ const Routes = () => {
 		<Router>
 			<Switch>
 				<Route exact path='/' component={Login} />
-				<Route exact path='/mainpage/' component={AuthComponent(MainPage)} />
+				<Route exact path='/mainpage/' component={MainPage} />
 				<Route
 					exact
 					path='/workshop-single/:workshopId/'
-					component={AuthComponent(Workshop)}
+					component={Workshop}
 				/>
-				<Route
-					exact
-					path='/user-profile/'
-					component={AuthComponent(UserProfile)}
-				/>
+				<Route exact path='/user-profile/' component={UserProfile} />
 
 				<Route exact path='/test/' component={TestPage} />
 			</Switch>

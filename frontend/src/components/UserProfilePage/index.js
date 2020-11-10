@@ -1,11 +1,13 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Container } from '../../style/Container';
 import { TopProfileBar } from './styled';
 import { Button } from '../../style/Button';
-// import NavigateDashboard from '../NavDashboard';
+import avatar from '../../assets/images/avatar-placeholder.png';
 
 const UserProfilePage = ({ user }) => {
+	const history = useHistory();
 
 	const fullName = `${user.first_name} ${user.last_name}`;
 
@@ -13,8 +15,11 @@ const UserProfilePage = ({ user }) => {
 		<Container>
 			<TopProfileBar>
 				<div className='avatar-container'>
-					<img src={user.avatar} alt='avatar' />
+					<img src={user.avatar ? user.avatar : avatar} alt='avatar' />
 					<Link to='#'>
+						<Button editProfileBtn onClick={() => history.push('/mainpage/')}>
+							Back
+						</Button>
 						<Button editProfileBtn>Edit profile</Button>
 					</Link>
 				</div>
@@ -26,9 +31,11 @@ const UserProfilePage = ({ user }) => {
 					</div>
 					<div className='right-side'>
 						<p>
-							{user.address}, {user.zip_code} - {user.city}
+							{user.address ? user.address : 'No info provided'},
+							{user.zip_code ? user.city : 'No info provided'} -
+							{user.city ? user.city : 'No info provided'}
 						</p>
-						<p>{user.country}</p>
+						<p>{user.country ? user.country : "No info provided"}</p>
 					</div>
 					<div className='tokens-container'>
 						<p>
@@ -43,7 +50,6 @@ const UserProfilePage = ({ user }) => {
 					</div>
 				</div>
 			</TopProfileBar>
-			{/* <NavigateDashboard /> */}
 		</Container>
 	);
 };

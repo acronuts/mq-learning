@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import pytz
 from rest_framework import filters
 from rest_framework.generics import ListAPIView, GenericAPIView, RetrieveAPIView, CreateAPIView, DestroyAPIView
@@ -42,8 +42,8 @@ class ReserveWorkshopView(GenericAPIView):
         workshop = self.get_object()
         user = request.user
         if workshop in user.m2m_workshops.all():
-            if workshop.date_start < present:
-                return Response(status=403, data="You can't unregister from past events")
+            if workshop.date_start < present + timedelta(days=1):
+                return Response(status=403, data="Sorry, you're not allowed to unregister anymore")
             else:
                 user.m2m_workshops.remove(workshop)
                 balance = Account(owner=user, credit=workshop.cost, company=user.company)
