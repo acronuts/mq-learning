@@ -8,24 +8,23 @@ import searchAction from '../../store/actions/searchAction';
 
 
 const SearchBarComponent=({workshop})=>{
-    const [name, setName] = useState ('');
-    //const [query, setQuery] = useState ('');
+    const [search, setSearch] = useState ('');
+    const [query, setQuery] = useState ('');
     const [results, setResults] = useState([]);
 
-   /* const onSubmit = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault(); 
         setQuery(search); 
        
-    }*/
+    }
 
     useEffect(() => {
-        
-   /*     async function fetchData  ()  {
+        async function fetchData  ()  {
             try {
-                //const response = await fetch (searchAction(search)); // baseurl+url?${query}
-                //const json = await response.json(); 
-                console.log(response);
-               /*setResults(
+                const response = await fetch (searchAction({query})); 
+                const json = await response.json(); 
+                console.log({json});
+                setResults(
                     json.data.map( item =>{
                         return item.company.name
                         }
@@ -34,44 +33,30 @@ const SearchBarComponent=({workshop})=>{
                 )
 
             } catch (error) {}
-        }const getSearch = async () => {
-  fetch(searchAction(searc))
-    .then(response => response.json())
-    .then(data => {
-      console.log(data)
-    })
-}; */
-const getSearch =  () => {
-    fetch(searchAction(name))
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-      })
-  }
-
-        if (name !=='') {
-        getSearch();
+        }; 
+        if (query !=='') {
+        fetchData();
          }
-    },  [name]); 
+    },  [query]); 
    
     return(
             
         <Container>Search Button test
             
-            <form >
+            <form onSubmit = {onSubmit}>
              <SearchBar 
              value={search}
              onChange={ e => setSearch(e.target.value)} 
             placeholder="Search"
             />
             </form>
-        
-        
+            </F
+            <Fragment>
                 <Button type='submit'> Search</Button>    
-        
-            
+            </Fragment> 
+            <Fragment>
     {results.map(item =>(<h3 key ={item}> {item}</h3>))}
-        
+            </Fragment>
          </Container>
     )
 };

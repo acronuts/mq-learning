@@ -3,9 +3,9 @@ import baseUrl from '../baseUrl';
 const searchAction = name => async (dispatch, getState) => {
 	
     //const token = getState().loginReducer.token;//
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token")
 console.log(name)
-	const url = `${baseUrl}/backend/api/companies?search=${name}`;
+	const url = `${baseUrl}/backend/api/companies/?name=${name}`;
 	const config = {
 		method: 'GET',
 		headers: new Headers({
