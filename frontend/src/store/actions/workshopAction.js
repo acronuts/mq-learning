@@ -1,10 +1,10 @@
 import baseUrl from '../baseUrl';
 
-export const workshopAction = props => async (dispatch, getState) => {
+export const searchAction = props => async (dispatch, getState) => {
 	
 	const token = getState().loginReducer.token;
 
-	const url = `${baseUrl}/backend/api/workshops/`;
+	const url = `${baseUrl}/backend/api/companies/`;
 	const config = {
 		method: 'GET',
 		headers: new Headers({
@@ -17,4 +17,4 @@ export const workshopAction = props => async (dispatch, getState) => {
 	return data;
 };
 
-export default workshopAction;
+export default searchAction;

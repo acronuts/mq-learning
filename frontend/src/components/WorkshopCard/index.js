@@ -2,6 +2,7 @@ import React from 'react';
 import { CardWrapper, ContentWrapper, ReserveBtnWrapper } from './styled';
 import { useHistory } from 'react-router-dom';
 import { Button } from '../../style/Button';
+import moment from 'moment'
 
 const WorkshopCard = ({ workshop }) => {
 	const history = useHistory();

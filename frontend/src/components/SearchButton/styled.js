@@ -9,8 +9,6 @@ export const SearchBar=styled.input`
     border: 1px; 
     border-radius: 0.3rem;
 
-
-
 `; 
 
 
