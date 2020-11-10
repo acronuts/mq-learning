@@ -25,12 +25,12 @@ import { useDispatch } from 'react-redux';
 const TopBar = ({ user }) => {
 	const fullName = `${user.first_name} ${user.last_name}`;
 	const history = useHistory();
-	const dispatch = useDispatch(); 
+	const dispatch = useDispatch();
 
 	const logOutHandler = () => {
 		history.push('/');
 		return dispatch(logoutAction());
-	}
+	};
 
 	return (
 		<Container mainPage>
@@ -40,7 +40,9 @@ const TopBar = ({ user }) => {
 						<MQLogo src={mqlogo} alt='logo' />
 						<div className='logo-text'>
 							<p>Meaning</p>
-							<p>Quotient &copy;</p>
+							<p>
+								Quotient <span>&copy;</span>
+							</p>
 						</div>
 					</MQLogoWrapper>
 				</TopBarLeft>
@@ -66,9 +68,9 @@ const TopBar = ({ user }) => {
 						</CompanyText>
 						<ViewProfileBtnWrapper>
 							<ViewProfileBtn>
-								<Link to='/user-profile/'>Edit Profile</Link>
+								<Link to='/user-profile/'>edit profile</Link>
 							</ViewProfileBtn>
-							<ViewProfileBtn onClick={logOutHandler}>Logout</ViewProfileBtn>
+							<ViewProfileBtn onClick={logOutHandler}>logout</ViewProfileBtn>
 						</ViewProfileBtnWrapper>
 					</UserProfileContainer>
 				</TopBarRight>

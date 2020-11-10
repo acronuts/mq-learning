@@ -28,14 +28,12 @@ const UserProfilePage = ({ user }) => {
 						<h2>{fullName}</h2>
 						<p>{user.email}</p>
 						<p>{user.company ? user.company.name : null}</p>
+						<p>{user.address}</p>
 					</div>
 					<div className='right-side'>
-						<p>
-							{user.address ? user.address : 'No info provided'},
-							{user.zip_code ? user.city : 'No info provided'} -
-							{user.city ? user.city : 'No info provided'}
-						</p>
-						<p>{user.country ? user.country : "No info provided"}</p>
+						<p>{user.zip_code}</p>
+						<p>{user.city}</p>
+						<p>{user.country}</p>
 					</div>
 					<div className='tokens-container'>
 						<p>

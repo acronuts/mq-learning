@@ -33,6 +33,7 @@ urlpatterns = [
     path('backend/api/companies/', include('companies.urls')),
     path('backend/api/workshops/', include('workshops.urls')),
     path('backend/api/accounts/', include('wallet.urls')),
+    path('backend/api/resources/', include('resources.urls')),
 ]
 
 if settings.DEBUG:

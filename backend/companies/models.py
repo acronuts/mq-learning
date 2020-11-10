@@ -2,8 +2,13 @@ from django.db import models
 from django.db.models import Sum, F
 
 
+def user_directory_path(instance, filename):
+    return f'{instance.name}/{filename}'
+
+
 class Company(models.Model):
     name = models.CharField(max_length=100, unique=True)
+    logo = models.ImageField(upload_to=user_directory_path, blank=True)
     phone = models.CharField(max_length=15, blank=True)
     website = models.CharField(max_length=50, blank=True)
     address = models.CharField(max_length=100, blank=True)

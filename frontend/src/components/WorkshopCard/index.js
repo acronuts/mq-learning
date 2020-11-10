@@ -28,6 +28,7 @@ const WorkshopCard = ({ workshop, user }) => {
 	// 	return moment(date).format('dddd');
 	// }
 
+	//todo register / unregister button single workshop
 	// const checkAttended = () => {
 	// 	let userId = user.id;
 	// 	let attendees = workshop.attendees;
@@ -61,7 +62,7 @@ const WorkshopCard = ({ workshop, user }) => {
 						moreInfoBtn
 						onClick={() => history.push(`/workshop-single/${workshop.id}/`)}
 					>
-						More Info
+						more info
 					</Button>
 				</ReserveBtnWrapper>
 			</CardWrapper>

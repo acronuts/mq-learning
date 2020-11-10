@@ -9,6 +9,12 @@ def user_directory_path(instance, filename):
 
 
 class Workshop(models.Model):
+    cat_choices = [
+        ('self', 'Self'),
+        ('work', 'Work'),
+        ('rela', 'Relations')
+    ]
+
     title = models.CharField(max_length=100)
     subtitle = models.CharField(max_length=255, blank=True)
     description = models.TextField()
@@ -17,6 +23,7 @@ class Workshop(models.Model):
     created = models.DateTimeField(auto_now=True)
     date_start = models.DateTimeField()
     date_end = models.DateTimeField()
+    category = models.CharField(max_length=9, choices=cat_choices, blank=True)
     cost = models.IntegerField()
     max_seats = models.IntegerField(default=20)
     attendees = models.ManyToManyField(to=User, related_name='m2m_workshops', blank=True)

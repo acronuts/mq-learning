@@ -12,6 +12,7 @@ export const Button = styled.button`
 	letter-spacing: 0.1rem;
 	transition: linear 0.15s;
 	cursor: pointer;
+	text-align: center;
 	:hover {
 		background: ${colors.purpleMainHover};
 	}
@@ -19,10 +20,10 @@ export const Button = styled.button`
 	${props =>
 		props.btnNavDashboard &&
 		css`
-			width: 12rem;
-			height: 4rem;
-			margin: 0.8rem 0;
-			font-size: ${fontSizes.normal};
+			width: 11rem;
+			height: 3.5rem;
+			margin: 0.5rem 0;
+			font-size: ${fontSizes.small};
 		`}
 
 	/* Login Page */
@@ -67,7 +68,7 @@ export const Button = styled.button`
 			margin-top: 1rem;
 			font-size: ${fontSizes.small};
 			font-weight: 400;
-			border-radius: 1.5rem;
+			border-radius: 0.5rem;
 			background: ${colors.purpleMain};
 			color: ${colors.white};
 			:hover {
@@ -91,5 +92,20 @@ export const Button = styled.button`
 			padding: 0.4rem 1.3rem;
 			font-size: ${fontSizes.normal};
 			font-weight: 300;
+		`}
+
+		${props =>
+		props.save &&
+		css`
+			font-size: ${fontSizes.normal};
+			padding: 0.5rem 2rem;
+			background: transparent;
+			border: 0.1rem solid ${colors.white};
+			position: absolute;
+			bottom: 1rem;
+			right: 3rem;
+			:hover {
+				background: none;
+			}
 		`}
 `;

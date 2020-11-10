@@ -8,7 +8,7 @@ import Modal from '../Modal';
 import moment from 'moment';
 
 const WorkshopPage = ({ singleWorkshop, user }) => {
-	console.log(singleWorkshop.attendees);
+	// console.log(singleWorkshop.attendees);
 
 	const history = useHistory();
 	const [showModal, setShowModal] = useState(false);

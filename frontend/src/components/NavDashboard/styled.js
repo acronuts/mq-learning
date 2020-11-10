@@ -33,7 +33,6 @@ export const NavbarDiV = styled.div`
 	min-height: 40rem;
 	flex-direction: row;
 	justify-content: space-between;
-	align-content: center;
 	padding: 0 2rem;
 
 	${props =>
@@ -53,6 +52,7 @@ export const SectionWorkshop = styled.div`
 	height: 40rem;
 	overflow-y: scroll;
 	scroll-snap-type: mandatory;
+	scrollbar-width: none;
 
 	::-webkit-scrollbar {
 		display: none;

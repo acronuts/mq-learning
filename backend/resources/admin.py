@@ -1,9 +1,6 @@
 from django.contrib import admin
 
-from resources.models import Video, Audio, Image
+from resources.models import Resource
 
-admin.site.register(Video)
+admin.site.register(Resource)
 
-admin.site.register(Audio)
-
-admin.site.register(Image)

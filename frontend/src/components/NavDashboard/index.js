@@ -3,34 +3,79 @@ import { Container } from '../../style/Container';
 import { Button } from '../../style/Button';
 import { NavbarDiV, SectionWorkshop, NavigationWrapper } from './styled';
 import WorkshopCard from '../WorkshopCard';
+import EmployeeCard from '../EmployeeCard';
 
 const NavigateDashboard = ({
 	workshops,
 	scheduledWorkshops,
 	attendedWorkshops,
 	user,
+	employees,
 }) => {
+	console.log(employees);
 	const [active, setActive] = useState('workshop');
 
 	return (
 		<Container>
 			<NavigationWrapper>
 				<NavbarDiV userProfile>
-					<Button btnNavDashboard onClick={() => setActive('workshop')}>
-						Select Workshop
+					<Button
+						btnNavDashboard
+						onClick={() => setActive('workshop')}
+						className={active === 'workshop' ? 'active' : null}
+					>
+						Workshops
 					</Button>
 					<Button
 						btnNavDashboard
 						onClick={() => setActive('scheduledWorkshop')}
+						className={active === 'scheduledWorkshop' ? 'active' : null}
 					>
-						Scheduled Workshop
+						Scheduled Workshops
 					</Button>
-					<Button btnNavDashboard onClick={() => setActive('attendedWorkshop')}>
-						Attended Workshop
+					<Button
+						btnNavDashboard
+						onClick={() => setActive('attendedWorkshop')}
+						className={active === 'attendedWorkshop' ? 'active' : null}
+					>
+						Attended Workshops
 					</Button>
-					<Button btnNavDashboard onClick={() => setActive('resources')}>
+					<Button
+						btnNavDashboard
+						onClick={() => setActive('resources')}
+						className={active === 'resources' ? 'active' : null}
+					>
 						Resources
 					</Button>
+
+					{user.isAdmin ? (
+						<Fragment>
+							<Button
+								btnNavDashboard
+								onClick={() => setActive('employees')}
+								className={active === 'employees' ? 'active' : null}
+							>
+								Employees
+							</Button>
+							<Button
+								btnNavDashboard
+								onClick={() => setActive('company')}
+								className={active === 'company' ? 'active' : null}
+							>
+								Company
+							</Button>
+						</Fragment>
+					) : null}
+
+					{user.is_staff ? (
+						<Button
+							btnNavDashboard
+							onClick={() => setActive('compAdmins')}
+							className={active === 'compAdmins' ? 'active' : null}
+						>
+							Company Administrators
+						</Button>
+					) : null}
 				</NavbarDiV>
 
 				<SectionWorkshop>
@@ -85,7 +130,19 @@ const NavigateDashboard = ({
 					) : null}
 
 					{/* todo: create resources component */}
-					{active === 'resources' ? <h1>Resources</h1> : null}
+					{active === 'resources' ? <h4 style={message}>Resources</h4> : null}
+
+					{active === 'employees' ? (
+						<Fragment>
+							{employees.length ? (
+								employees.map(employee => <EmployeeCard employee={employee} />)
+							) : (
+								<h4 style={message}>
+									There are no employees registered for this company.
+								</h4>
+							)}
+						</Fragment>
+					) : null}
 				</SectionWorkshop>
 			</NavigationWrapper>
 		</Container>
@@ -93,8 +150,8 @@ const NavigateDashboard = ({
 };
 
 const message = {
-	'margin-top': '100px',
-	'font-weigth': '500',
+	marginTop: '100px',
+	fontWeight: '500',
 };
 
 export default NavigateDashboard;

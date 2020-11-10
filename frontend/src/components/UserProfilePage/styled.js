@@ -18,8 +18,9 @@ export const TopProfileBar = styled.section`
 		height: 100%;
 
 		img {
-			width: 70%;
-			border-radius: 6rem;
+			width: 9rem;
+			height: 9rem;
+			border-radius: 50%;
 			margin-bottom: 0.8rem;
 		}
 	}

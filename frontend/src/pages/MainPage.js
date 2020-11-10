@@ -8,6 +8,7 @@ import workshopAction from '../store/actions/workshopAction';
 import userAction from '../store/actions/userAction';
 import scheduledWorkshopAction from '../store/actions/scheduledWorkshopAction';
 import attendedWorkshopAction from '../store/actions/attendedWorkshopAction';
+import employeesAction from '../store/actions/employeesAction';
 
 const MainPage = () => {
 	const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const MainPage = () => {
 	const [user, setUser] = useState([]);
 	const [scheduledWorkshops, setScheduledWorkshops] = useState([]);
 	const [attendedWorkshops, setAttendedWorkshops] = useState([]);
+	const [employees, setEmployees] = useState([]);
 
 	useEffect(() => {
 		const getData = async () => {
@@ -22,10 +24,13 @@ const MainPage = () => {
 			const userData = await dispatch(userAction());
 			const scheduledWorkshopsData = await dispatch(scheduledWorkshopAction());
 			const attendedWorkshopsData = await dispatch(attendedWorkshopAction());
+			const employeesData = await dispatch(employeesAction());
 			setWorkshops(workshopData);
 			setUser(userData);
 			setScheduledWorkshops(scheduledWorkshopsData);
 			setAttendedWorkshops(attendedWorkshopsData);
+			setEmployees(employeesData);
+			console.log('fetching');
 		};
 		getData();
 	}, [dispatch]);
@@ -34,11 +39,12 @@ const MainPage = () => {
 		<Fragment>
 			<TopBar user={user} />
 			<Container>
-				{workshops.length ? (
+				{workshops ? (
 					<NavigateDashboard
 						workshops={workshops}
 						scheduledWorkshops={scheduledWorkshops}
 						attendedWorkshops={attendedWorkshops}
+						employees={employees}
 						user={user}
 					/>
 				) : null}

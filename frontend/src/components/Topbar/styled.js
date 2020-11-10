@@ -45,6 +45,9 @@ export const MQLogoWrapper = styled.div`
 
 		p:nth-child(2) {
 			margin-left: 1.8rem;
+			span {
+				font-size: ${fontSizes.normal};
+			}
 		}
 	}
 `;
@@ -62,9 +65,9 @@ export const AvatarContainer = styled.div`
 `;
 
 export const Avatar = styled.img`
-	width: 5rem;
-	height: 5rem;
-	border-radius: 5rem;
+	width: 6rem;
+	height: 6rem;
+	border-radius: 50%;
 	align-self: center;
 `;
 
@@ -88,7 +91,7 @@ export const ViewProfileBtnWrapper = styled.div`
 `;
 
 export const ViewProfileBtn = styled.button`
-	padding: 0.5rem 0.4rem;
+	padding: 0.5rem 0.8rem;
 	font-size: ${fontSizes.small};
 	background: ${colors.purpleMain};
 	color: ${colors.white};

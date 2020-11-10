@@ -1,5 +1,5 @@
 from rest_framework import filters
-from rest_framework.generics import ListAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
 
 from companies.models import Company
 from companies.serializers import CompanySerializer
@@ -19,3 +19,15 @@ class CreateCompanyView(CreateAPIView):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
     permission_classes = [IsCompanyAdmin & IsAuthenticated]
+
+
+class GetPatchDeleteCompanyView(RetrieveUpdateDestroyAPIView):
+    """
+    only one CompanyAdmin allowed.
+    """
+    queryset = Company.objects.all()
+    serializer_class = CompanySerializer
+    permission_classes = [IsCompanyAdmin & IsAuthenticated]
+
+    def get_object(self):
+        return Company.objects.get(fk_user_company=self.request.user)
