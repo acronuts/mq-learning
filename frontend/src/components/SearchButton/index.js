@@ -8,7 +8,7 @@ import searchAction from '../../store/actions/searchAction';
 
 
 const SearchBarComponent=({workshop})=>{
-    const [search, setSearch] = useState ('');
+    const [name, setName] = useState ('');
     //const [query, setQuery] = useState ('');
     const [results, setResults] = useState([]);
 
@@ -42,17 +42,17 @@ const SearchBarComponent=({workshop})=>{
     })
 }; */
 const getSearch =  () => {
-    fetch(searchAction(search))
+    fetch(searchAction(name))
       .then(response => response.json())
       .then(data => {
         console.log(data)
       })
   }
 
-        if (search !=='') {
+        if (name !=='') {
         getSearch();
          }
-    },  [search]); 
+    },  [name]); 
    
     return(
             
