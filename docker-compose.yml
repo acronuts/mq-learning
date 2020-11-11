@@ -29,10 +29,24 @@ services:
     env_file:
       - ./envs/dev.env
 
+  email:
+    image: registry.gitlab.propulsion-home.ch/full-stack/batch-13-aug-2020/final-projects/booking-seminars/mq-learning:latest
+    restart: always
+    env_file:
+      - ./envs/dev.env
+    command: 'python manage.py send_mail'
+    volumes:
+      - ./backend:/backend
+      - ./media-files:/media-files
+      - ./static-files:/static-files
+    depends_on:
+      - postgres
+      - backend
+
+
 #these volumes create a directory in your computer so that no matter what, they will not be deleted
 volumes:
   media-files:
   static-files:
   postgres:
   frontend:
-

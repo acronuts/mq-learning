@@ -4,6 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 
+from emails.models import Email
 from .models import RegistrationProfile
 
 from users.serializers import UserSerializer
@@ -30,7 +31,8 @@ class RegistrationView(GenericAPIView):
         registration = RegistrationProfile(user=new_user)
         registration.save()
 
-        # sending email to be added
+        # email = Email(to=email, subject="Validation code", content=f"Here is your code: {registration.code}")
+        # email.save()
 
         return Response(status=200)
 
@@ -40,6 +42,7 @@ class ValidationView(GenericAPIView):
     serializer_class = UserSerializer
 
     def post(self, request, *args, **kwargs):
+
         code = request.data['code']
         email = request.data['email']
         try:
