@@ -6,6 +6,16 @@ import * as theme from './style/theme';
 import Routes from './routes';
 import { Provider } from 'react-redux';
 import store from './store';
+import { loginReducer } from './store/reducers/loginReducer';
+
+try {
+	const token = localStorage.getItem('token')
+	if (token) {
+		store.dispatch(loginReducer(token));
+	}
+} catch (error) {
+	
+}
 
 
 const root = document.getElementById('root');

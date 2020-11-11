@@ -11,8 +11,8 @@ export const loginReducer = (state = initialState, action) => {
     switch (action.type) {
         case USER_LOGIN: {
             return {
-                user: action.payload.user.user,
-                token: action.payload.user.access,
+                user: action.payload.user,
+                token: action.payload.access,
                 authenticated: action.payload.authenticated
             };
         }

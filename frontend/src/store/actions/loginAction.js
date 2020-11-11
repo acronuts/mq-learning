@@ -27,8 +27,8 @@ export const login = (data, history) => async (dispatch, getState) => {
 
     if(access) {
         localStorage.setItem('token', access)
-        dispatch(loginAction({ user: user, authenticated: true }));
-        history.push('/mainpage')
+        dispatch(loginAction({ ...user, authenticated: true }));
+        history.push('/mainpage/')
     } else {
         dispatch(loginAction({ user: '', authenticated: false }));
     }

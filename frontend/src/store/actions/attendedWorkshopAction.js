@@ -1,7 +1,8 @@
 import baseUrl from '../baseUrl';
 
 export const attendedWorkshopAction = props => async (dispatch, getState) => {
-	const token = getState().loginReducer.token;
+	// const token = getState().loginReducer.token;
+	const token = getState().loginReducer.token || localStorage.getItem('token');
 
 	const url = `${baseUrl}/backend/api/workshops/user/attended/`;
 	const config = {

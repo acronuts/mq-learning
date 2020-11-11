@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import AuthComponent from '../HOC';
+import WrapperComponent from '../HOC';
 import Login from '../pages/Login';
 import MainPage from '../pages/MainPage';
 import UserProfile from '../pages/UserProfile';
@@ -12,14 +12,9 @@ const Routes = () => {
 		<Router>
 			<Switch>
 				<Route exact path='/' component={Login} />
-				<Route exact path='/mainpage/' component={MainPage} />
-				<Route
-					exact
-					path='/workshop-single/:workshopId/'
-					component={Workshop}
-				/>
-				<Route exact path='/user-profile/' component={UserProfile} />
-
+				<Route exact path='/mainpage/' component={WrapperComponent(MainPage)} />
+				<Route exact path='/workshop-single/:workshopId/' component={WrapperComponent(Workshop)}/>
+				<Route exact path='/user-profile/' component={WrapperComponent(UserProfile)} />
 				<Route exact path='/test/' component={TestPage} />
 			</Switch>
 		</Router>

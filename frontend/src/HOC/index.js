@@ -3,16 +3,16 @@ import { connect } from 'react-redux'
 
 const WrapperComponent = (WrappedComponent) => {
     const AuthComponent = (props) => {
-        const { authenticated, history, location } = props;
-        
+        const { authenticated, history, location} = props;
+
         useEffect(() => {
-            const redirect = () => {
+            const userRedirect = () => {
                 const path = location.pathname;
-                if (localStorage.getItem('token') && authenticated) history.push(path);
+                if (localStorage.getItem('token') || authenticated) history.push(path);
                 else history.push('/');
             };
-            redirect()
-        }, [authenticated]); // eslint-disable-line react-hooks/exhaustive-deps
+            userRedirect()
+        }, [authenticated]);
 
         return <WrappedComponent { ...props }/>
     }

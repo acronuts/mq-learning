@@ -1,7 +1,8 @@
 import baseUrl from '../../store/baseUrl';
 
 export const ReservationAction = workshopId => async (dispatch, getState) => {
-	const token = getState().loginReducer.token;
+	// const token = getState().loginReducer.token;
+	const token = getState().loginReducer.token || localStorage.getItem('token');
 
 	const url = `${baseUrl}/backend/api/workshops/reserve/${workshopId}/`;
 	const config = {
