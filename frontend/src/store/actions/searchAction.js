@@ -1,11 +1,11 @@
 import baseUrl from '../baseUrl';
 
-const searchAction = name => async (dispatch, getState) => {
+const searchAction = query => async (dispatch, getState) => {
 	
     //const token = getState().loginReducer.token;//
     const token = localStorage.getItem("token")
-console.log(name)
-	const url = `${baseUrl}/backend/api/companies/?name=${name}`;
+console.log(query)
+	const url = `${baseUrl}/backend/api/companies/?search=${query}`;
 	const config = {
 		method: 'GET',
 		headers: new Headers({
