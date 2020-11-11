@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Third Party Apps
+    'fullurl',
     'rest_framework',
     'corsheaders',
     # Own Apps
@@ -48,7 +49,8 @@ INSTALLED_APPS = [
     'registrations',
     'companies',
     'workshops',
-    'resources'
+    'resources',
+    'emails',
 ]
 
 MIDDLEWARE = [
