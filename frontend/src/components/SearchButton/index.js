@@ -1,10 +1,12 @@
 import React, { Fragment, useState , useEffect} from 'react';
-import {SearchBar} from './styled';
+import {SearchBar, ResultsDiv,  ResultsContentWrapper, ResultsWrapper} from './styled';
 import {Container} from '../../style/Container'; 
 import {Button} from '../../style/Button'
 import baseUrl from '../../store/baseUrl'
 import searchAction from '../../store/actions/searchAction';
 import {useDispatch} from 'react-redux'
+
+
 
 
 
@@ -25,7 +27,7 @@ const SearchBarComponent=({workshop})=>{
 
     useEffect(() => {
         
-    },  []); 
+    },  ); 
    
     return (
         
@@ -34,22 +36,44 @@ const SearchBarComponent=({workshop})=>{
             
             <form onSubmit = {onSubmit}>
              <SearchBar 
+             
              value={search}
              onChange={ e => setSearch(e.target.value)} 
             placeholder="Search"
             /></form>
-            
+             <Button > <i class = "search_bar__submit">  Search</i></Button>
 
-            <Button type="submit"> Search</Button>
+            
                     
-             
+         
             
                    
+        <ResultsDiv>
+            {/*results.map(result =>(<img key ={result.id} alt='ABC logo' src={result.logo}/>))*/} 
+            {results.map(result =>(<ul key ={result.id}> 
+         
+                    
+                            
+                                <p>  {results.name}</p>
+                                <p>  Phone: {result.phone}</p>
+                                <p> Website: {result.website}</p>
+                                <p> Address: {result.address}</p>
+                                <p> Zip code: {result.zip_code}</p>
+                                <p> City: {result.city}</p>
+                                <p> Country: {result.country}</p>
+                                
+       
+            
+            
+            
+            
+            
+            
+            
+            </ul>))}
+            
     
-    
-       {results.map(result =>(<h3 key ={result.id}> {result.name}</h3>))}
-    
-    
+        </ResultsDiv>
             
          </Container>
     )

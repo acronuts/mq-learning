@@ -12,3 +12,26 @@ export const SearchBar=styled.input`
 `; 
 
 
+export const ResultsDiv =styled.div`
+    font-style: inherit
+
+`
+export const ResultsWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	width: 70%;
+	margin: 1rem;
+	background: ${colors.white};
+	border-radius: 1.5rem;
+	padding: 1rem 1rem;
+`
+
+export const ResultsContentWrapper = styled.div`
+	display: flex;
+    width:65%; 
+	/* flex-direction: column; */
+
+	height: auto;
+	color: ${colors.black};
+`;
