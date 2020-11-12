@@ -3,7 +3,7 @@ import baseUrl from '../baseUrl';
 export const userAction = () => async (dispatch, getState) => {
 	// const token = getState().loginReducer.token;
 	const token = getState().loginReducer.token || localStorage.getItem('token');
-	
+
 	const url = `${baseUrl}/backend/api/users/me/`;
 	const config = {
 		method: 'GET',
@@ -14,7 +14,6 @@ export const userAction = () => async (dispatch, getState) => {
 	};
 	const response = await fetch(url, config);
 	const data = await response.json();
-	console.log(data);
 	return data;
 };
 

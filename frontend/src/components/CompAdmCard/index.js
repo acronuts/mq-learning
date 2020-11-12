@@ -1,53 +1,50 @@
 import React from 'react';
 import {
-	CardWrapper,
+	AllocateTokenSection,
 	AvatarContainer,
+	CardWrapper,
 	InfoContainer,
 	LeftSection,
 	RightSection,
 	TokenSection,
-	AllocateTokenSection,
-} from './styled';
+} from '../EmployeeCard/styled';
 import avatar from '../../assets/images/avatar-placeholder.png';
 import { Button } from '../../style/Button';
 
-const EmployeeCard = ({ employee }) => {
-	const fullName = `${employee.first_name} ${employee.last_name}`;
+const CompanyAdminCard = ({ compAdmin }) => {
+	const fullName = `${compAdmin.first_name} ${compAdmin.last_name}`;
 
 	return (
 		<CardWrapper>
 			<AvatarContainer>
-				<img
-					src={employee.avatar ? employee.avatar : avatar}
-					alt='employee-avatar'
-				/>
+				<img src={compAdmin.avatar ? compAdmin.avatar : avatar} alt='' />
 			</AvatarContainer>
 			<InfoContainer>
 				<LeftSection>
 					<p>{fullName}</p>
-					<p>{employee.email}</p>
-					<p>{employee.company.name}</p>
+					<p>{compAdmin.email}</p>
+					<p>{compAdmin.company.name}</p>
 					<p>
-						{employee.address}, {employee.zip_code} - {employee.city}
+						{compAdmin.address}, {compAdmin.zip_code} - {compAdmin.city}
 					</p>
-					<p>{employee.country}</p>
+					<p>{compAdmin.country}</p>
 				</LeftSection>
 				<RightSection>
 					<TokenSection>
 						<p>
 							<span>Credit amount:</span>{' '}
-							{employee.available_credit.total_available}
+							{compAdmin.available_credit.total_available}
 						</p>
 					</TokenSection>
 					<AllocateTokenSection>
 						<span>Allocate credits:</span>
 						<input type='number' />
+						<Button save>save</Button>
 					</AllocateTokenSection>
-					<Button save>save</Button>
 				</RightSection>
 			</InfoContainer>
 		</CardWrapper>
 	);
 };
 
-export default EmployeeCard;
+export default CompanyAdminCard;

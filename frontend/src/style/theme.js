@@ -13,10 +13,7 @@ export const GlobalStyle = createGlobalStyle`
         font-family: Poppins, Tahoma, sans-serif;
 		font-size: 1rem;
         line-height: 1.6;
-		background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
-		background-repeat: no-repeat;
-		background-position: center;
-		background-size: cover;
+		background: #fff;
 		min-height: 100vh;
 		height: 100%;
 		margin: 0 auto;
@@ -51,6 +48,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 `;
 
+// colors
 export const colors = {
 	white: '#FFF',
 	black: '#000',
@@ -68,11 +66,20 @@ export const colors = {
 	workshopRelationsHover: '#FCD341',
 };
 
+//font-sizes
 export const fontSizes = {
 	small: '.8rem',
 	normal: '1rem',
 	medium: '1.2rem',
 	large: '1.6rem',
 	exLarge: '1.8rem',
-	
+};
+
+//border-radius
+export const borderRadius = {
+	borderRadiusS: '.3rem',
+	borderRadius: '.6rem',
+	borderRadiusM: '1rem',
+	borderRadiusL: '1.5rem',
+	borderRadiusXL: '2rem',
 };

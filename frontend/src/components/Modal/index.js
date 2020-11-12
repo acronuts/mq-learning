@@ -7,9 +7,6 @@ import ReservationAction from '../../store/actions/reservationAction';
 const Modal = ({ handleClose, workshop, user }) => {
 	const dispatch = useDispatch();
 
-	// console.log(user.available_credit.total_available);
-	// console.log(workshop.id);
-
 	const [currentStage, setCurrentStage] = useState(0);
 
 	const handleReservation = e => {
@@ -17,7 +14,6 @@ const Modal = ({ handleClose, workshop, user }) => {
 		setCurrentStage(currentStage + 1);
 		const getData = async () => {
 			const data = await dispatch(ReservationAction(workshop.id));
-			console.log(data);
 		};
 		getData();
 	};
@@ -61,7 +57,7 @@ const Modal = ({ handleClose, workshop, user }) => {
 							}
 						>
 							<Button modalBtn onClick={handleReservation}>
-								Yes
+								yes
 							</Button>
 							<Button modalBtn onClick={handleClose}>
 								no

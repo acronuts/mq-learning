@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { colors, fontSizes } from '../style/theme';
+import { colors, fontSizes, borderRadius } from '../style/theme';
 
 export const Button = styled.button`
 	padding: 0.8rem 2.5rem;
@@ -8,7 +8,7 @@ export const Button = styled.button`
 	color: ${colors.white};
 	outline: none;
 	border: none;
-	border-radius: 0.3rem;
+	border-radius: ${borderRadius.borderRadiusS};
 	letter-spacing: 0.1rem;
 	transition: linear 0.15s;
 	cursor: pointer;
@@ -30,7 +30,9 @@ export const Button = styled.button`
 	${props =>
 		props.registerLoginBtn &&
 		css`
-			padding: 0.7rem 1.5rem;
+			width: 8rem;
+			height: auto;
+			padding: 0.7rem 1rem;
 			margin-top: 1.5rem;
 			font-weight: 400;
 			color: ${colors.white};
@@ -68,7 +70,7 @@ export const Button = styled.button`
 			margin-top: 1rem;
 			font-size: ${fontSizes.small};
 			font-weight: 400;
-			border-radius: 0.5rem;
+			border-radius: ${borderRadius.borderRadiusS};
 			background: ${colors.purpleMain};
 			color: ${colors.white};
 			:hover {

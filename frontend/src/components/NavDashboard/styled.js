@@ -1,24 +1,6 @@
 import styled, { css } from 'styled-components';
 import { colors, fontSizes } from '../../style/theme';
 
-export const Button = styled.button`
-	align-items: center;
-	justify-content: center;
-
-	${props =>
-		props.red &&
-		css`
-			font-size: ${fontSizes.normal};
-			padding: 1.5rem;
-			background: white;
-			transition: linear 0.1s;
-
-			:hover {
-				background: ${colors.purpleMainHover};
-			}
-		`}
-`;
-
 export const NavigationWrapper = styled.section`
 	margin: 3rem 0;
 	display: flex;
@@ -31,17 +13,10 @@ export const NavbarDiV = styled.div`
 	width: 20%;
 	height: 100%;
 	min-height: 40rem;
-	flex-direction: row;
-	justify-content: space-between;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
 	padding: 0 2rem;
-
-	${props =>
-		props.userProfile &&
-		css`
-			flex-direction: column;
-			align-items: flex-start;
-			justify-content: flex-start;
-		`}
 `;
 
 export const SectionWorkshop = styled.div`
@@ -75,4 +50,16 @@ export const SectionInfo = styled.section`
 	text-align: center;
 	background-color: #fff !important;
 	border-radius: 5px;
+`;
+
+export const BtnContainer = styled.div`
+	width: 90%;
+	margin-top: 0.5rem;
+	text-align: right;
+	Button {
+		margin: 0 0.8rem;
+	}
+	/* Button:last-child {
+		margin-right: 0;
+	} */
 `;

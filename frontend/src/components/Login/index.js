@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Container } from '../../style/Container';
 import { Form } from '../../style/Form';
 import { Button } from '../../style/Button';
+import { MQLogoWrapper, MQLogo, TopBarHeader } from '../Topbar/styled';
+import mqlogo from '../../assets/images/mq-logo.jpg';
 import { useHistory } from 'react-router-dom';
 import { login } from '../../store/actions/loginAction';
 import { registrationAction } from '../../store/actions/registrationAction';
@@ -18,6 +20,7 @@ import {
 } from './styled';
 
 const LoginPage = props => {
+	const [showReg, setShowReg] = useState('');
 	const [currentStage, setCurrentStage] = useState(0);
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -88,6 +91,11 @@ const LoginPage = props => {
 		}
 	};
 
+	const showRegHandler = e => {
+		e.preventDefault();
+		setShowReg(showReg => !showReg);
+	};
+
 	// Timeout function to take registration
 	// form back to initial state
 	useEffect(() => {
@@ -105,157 +113,175 @@ const LoginPage = props => {
 
 	return (
 		<Container centerLoginContainer>
+			<TopBarHeader>
+				<MQLogoWrapper>
+					<MQLogo src={mqlogo} alt='logo' />
+					<div className='logo-text'>
+						<p>
+							Meaning<span>&reg;</span>
+						</p>
+						<p>Quotient</p>
+					</div>
+				</MQLogoWrapper>
+				<Button registerLoginBtn onClick={showRegHandler}>
+					{showReg ? 'Login' : 'Sign up'}
+				</Button>
+			</TopBarHeader>
 			<LoginContainer>
-				<LeftSide>
-					{/* Change title to Validation when validation step is reached */}
-					{currentStage === 2 ? (
-						<Title>
-							<h1>Validation</h1>
-						</Title>
-					) : (
-						<Title>
-							<h1>Sign Up</h1>
-						</Title>
-					)}
+				{showReg ? (
+					<Fragment>
+						{/* Change title to Validation when validation step is reached */}
+						{currentStage === 2 ? (
+							<Title>
+								<h1>Validation</h1>
+							</Title>
+						) : (
+							<Title>
+								<h1>Sign Up</h1>
+							</Title>
+						)}
 
-					{/* First Step of Registration - User details */}
-					{currentStage === 0 ? (
-						<InputsContainer registration>
-							<div>
-								{/* First Name and Last Name inputs are half of the other inputs */}
-								<Form
-									type='text'
-									value={first_name}
-									onChange={e => setUserFirstName(e.currentTarget.value)}
-									placeholder='First Name'
-									required
-									regHalfInput
-								/>
-								<Form
-									type='text'
-									value={last_name}
-									onChange={e => setUserLastName(e.currentTarget.value)}
-									placeholder='Last Name'
-									required
-									regHalfInput
-								/>
-							</div>
-							<Form
-								type='text'
-								value={regEmail}
-								onChange={e => setRegEmail(e.currentTarget.value)}
-								placeholder='Email'
-								required
-							/>
-							<Form
-								type='text'
-								value={company}
-								onChange={e => setCompany(e.currentTarget.value)}
-								placeholder='Company'
-								required
-							/>
-							{/* If the button is pressed, first step is done and user
-								should see a message */}
-							<Button registerLoginBtn onClick={handleRegistration}>
-								Register
-							</Button>
-						</InputsContainer>
-					) : null}
-
-					{/* Second Step of Registration - Successful registration message */}
-					{currentStage === 1 ? (
-						<InputsContainer registration>
-							<RegMessage>
-								<p>
-									Thanks for your registration. We've sent a validation code to
-									your email address.
-								</p>
-							</RegMessage>
-							<Button registerLoginBtn onClick={handleRegistration}>
-								Verification
-							</Button>
-						</InputsContainer>
-					) : null}
-
-					{/* Third Step of Registration - Code verification/validation */}
-					{currentStage === 2 ? (
-						<InputsContainer registrationVerifyCode>
-							<div>
+						{/* First Step of Registration - User details */}
+						{currentStage === 0 ? (
+							<InputsContainer registration>
+								<div>
+									{/* First Name and Last Name inputs are half of the other inputs */}
+									<Form
+										type='text'
+										value={first_name}
+										onChange={e => setUserFirstName(e.currentTarget.value)}
+										placeholder='First Name'
+										required
+										regHalfInput
+									/>
+									<Form
+										type='text'
+										value={last_name}
+										onChange={e => setUserLastName(e.currentTarget.value)}
+										placeholder='Last Name'
+										required
+										regHalfInput
+									/>
+								</div>
 								<Form
 									type='text'
 									value={regEmail}
 									onChange={e => setRegEmail(e.currentTarget.value)}
 									placeholder='Email'
 									required
-									regHalfInput
 								/>
 								<Form
 									type='text'
-									value={code}
-									onChange={e => setValidationCode(e.currentTarget.value)}
-									placeholder='Verification Code'
+									value={company}
+									onChange={e => setCompany(e.currentTarget.value)}
+									placeholder='Company'
 									required
-									regHalfInput
 								/>
-							</div>
-							<div>
-								<Form
-									type='password'
-									value={regPassword}
-									onChange={e => setRegPassword(e.currentTarget.value)}
-									placeholder='Password'
-									required
-									regHalfInput
-								/>
-								<Form
-									type='password'
-									value={password_repeat}
-									onChange={e => setPasswordRepeat(e.currentTarget.value)}
-									placeholder='Repeat Password'
-									required
-									regHalfInput
-								/>
-							</div>
-							<Button registerLoginBtn onClick={handleValidation}>
-								Validate Code
+								{/* If the button is pressed, first step is done and user
+								should see a message */}
+								<Button registerLoginBtn onClick={handleRegistration}>
+									Register
+								</Button>
+							</InputsContainer>
+						) : null}
+
+						{/* Second Step of Registration - Successful registration message */}
+						{currentStage === 1 ? (
+							<InputsContainer registration>
+								<RegMessage>
+									<p>
+										Thanks for your registration. We've sent a validation code
+										to your email address.
+									</p>
+								</RegMessage>
+								<Button registerLoginBtn onClick={handleRegistration}>
+									Verification
+								</Button>
+							</InputsContainer>
+						) : null}
+
+						{/* Third Step of Registration - Code verification/validation */}
+						{currentStage === 2 ? (
+							<InputsContainer registrationVerifyCode>
+								<div>
+									<Form
+										type='text'
+										value={regEmail}
+										onChange={e => setRegEmail(e.currentTarget.value)}
+										placeholder='Email'
+										required
+										regHalfInput
+									/>
+									<Form
+										type='text'
+										value={code}
+										onChange={e => setValidationCode(e.currentTarget.value)}
+										placeholder='Verification Code'
+										required
+										regHalfInput
+									/>
+								</div>
+								<div>
+									<Form
+										type='password'
+										value={regPassword}
+										onChange={e => setRegPassword(e.currentTarget.value)}
+										placeholder='Password'
+										required
+										regHalfInput
+									/>
+									<Form
+										type='password'
+										value={password_repeat}
+										onChange={e => setPasswordRepeat(e.currentTarget.value)}
+										placeholder='Repeat Password'
+										required
+										regHalfInput
+									/>
+								</div>
+								<Button registerLoginBtn onClick={handleValidation}>
+									Validate
+								</Button>
+							</InputsContainer>
+						) : null}
+
+						{/* Last Step of Registration - Successful validation message. Registration completed */}
+						{currentStage === 3 ? (
+							<InputsContainer registrationVerifyCode>
+								<RegMessage>
+									<p>
+										Your code was successfully validated. You can now login.
+									</p>
+								</RegMessage>
+							</InputsContainer>
+						) : null}
+					</Fragment>
+				) : (
+					<Fragment>
+						<Title>
+							<h1>Login</h1>
+						</Title>
+						<InputsContainer>
+							<Form
+								type='text'
+								value={email}
+								onChange={e => setEmail(e.currentTarget.value)}
+								placeholder='Email'
+								required
+							/>
+							<Form
+								type='password'
+								value={password}
+								onChange={e => setPassword(e.currentTarget.value)}
+								placeholder='Password'
+								required
+							/>
+							<Button registerLoginBtn onClick={loginBtnHandler}>
+								Login
 							</Button>
 						</InputsContainer>
-					) : null}
-
-					{/* Last Step of Registration - Successful validation message. Registration completed */}
-					{currentStage === 3 ? (
-						<InputsContainer registrationVerifyCode>
-							<RegMessage>
-								<p>Your code was successfully validated. You can now login.</p>
-							</RegMessage>
-						</InputsContainer>
-					) : null}
-				</LeftSide>
-
-				<RightSide>
-					<Title>
-						<h1>Login</h1>
-					</Title>
-					<InputsContainer>
-						<Form
-							type='text'
-							value={email}
-							onChange={e => setEmail(e.currentTarget.value)}
-							placeholder='Email'
-							required
-						/>
-						<Form
-							type='password'
-							value={password}
-							onChange={e => setPassword(e.currentTarget.value)}
-							placeholder='Password'
-							required
-						/>
-						<Button registerLoginBtn onClick={loginBtnHandler}>
-							Login
-						</Button>
-					</InputsContainer>
-				</RightSide>
+					</Fragment>
+				)}
 			</LoginContainer>
 		</Container>
 	);

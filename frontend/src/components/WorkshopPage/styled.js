@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, fontSizes } from '../../style/theme';
+import { borderRadius, colors, fontSizes } from '../../style/theme';
 
 export const TopBarWrapper = styled.section`
 	max-height: 20rem;
@@ -58,7 +58,7 @@ export const Showcase = styled.section`
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
-	border-radius: 0.3rem;
+	border-radius: ${borderRadius.borderRadiusS};
 	box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.75);
 `;
 
@@ -68,7 +68,6 @@ export const MainContent = styled.section`
 	min-height: 20rem;
 	margin: 3rem 0;
 	padding: 2rem;
-	/* border-radius: 0.5rem; */
 	color: ${colors.dimGray};
 	background: #f2f2f2;
 	box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.75);

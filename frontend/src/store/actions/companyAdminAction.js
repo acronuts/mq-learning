@@ -1,11 +1,10 @@
 import baseUrl from '../baseUrl';
 
-export const employeesAction = () => async (dispatch, getState) => {
-
+export const companyAdminAction = () => async (dispatch, getState) => {
 	// const token = getState().loginReducer.token;
 	const token = getState().loginReducer.token || localStorage.getItem('token');
 
-	const url = `${baseUrl}/backend/api/users/colleagues/`;
+	const url = `${baseUrl}/backend/api/users/admin/`;
 	const config = {
 		method: 'GET',
 		headers: new Headers({
@@ -18,4 +17,4 @@ export const employeesAction = () => async (dispatch, getState) => {
 	return data;
 };
 
-export default employeesAction;
+export default companyAdminAction;

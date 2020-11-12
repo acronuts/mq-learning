@@ -10,8 +10,7 @@ export const Container = styled.section`
 		props.centerLoginContainer &&
 		css`
 			display: flex;
-			align-items: center;
-			justify-content: center;
+			flex-direction: column;
 			height: 95vh;
 		`}
 

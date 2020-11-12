@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { colors } from '../../style/theme';
+import styled, { css } from 'styled-components';
+import { colors, borderRadius } from '../../style/theme';
 
 export const CardWrapper = styled.div`
 	display: flex;
@@ -8,8 +8,26 @@ export const CardWrapper = styled.div`
 	width: 80%;
 	margin: 1rem;
 	background: ${colors.white};
-	border-radius: 1.5rem;
+	border-radius: ${borderRadius.borderRadiusSw};
 	padding: 1rem 1rem;
+
+	${props =>
+		props.category === 'work' &&
+		css`
+			background: ${colors.workshopWork};
+		`}
+
+	${props =>
+		props.category === 'self' &&
+		css`
+			background: ${colors.workshopSelf};
+		`}
+
+	${props =>
+		props.category === 'rela' &&
+		css`
+			background: ${colors.workshopRelations};
+		`}
 `;
 
 export const ContentWrapper = styled.div`

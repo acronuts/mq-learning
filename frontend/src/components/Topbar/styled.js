@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import { colors, fontSizes } from '../../style/theme';
+import { colors, fontSizes, borderRadius } from '../../style/theme';
 
 export const TopBarHeader = styled.div`
 	width: 100%;
 	height: 10rem;
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 	z-index: 2;
 `;
@@ -29,34 +30,36 @@ export const TopBarRight = styled.div`
 	flex-direction: row-reverse;
 	justify-content: flex-start;
 `;
+
 export const MQLogoWrapper = styled.div`
 	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	background: ${colors.white};
 	border-bottom-right-radius: 2rem;
 	border-top-left-radius: 2rem;
 
 	.logo-text {
 		font-size: ${fontSizes.large};
 		font-weight: 400;
-		margin-left: 1.5rem;
+		margin-left: 1.2rem;
+		font-family: 'Libre Baskerville', Tahoma, sans-serif;
+
+		span {
+			margin-left: 1.5rem;
+			font-size: ${fontSizes.normal};
+		}
 
 		p:nth-child(2) {
 			margin-left: 1.8rem;
-			span {
-				font-size: ${fontSizes.normal};
-			}
 		}
 	}
 `;
 
 export const MQLogo = styled.img`
-	width: 7rem;
+	width: 5rem;
 	height: auto;
 	align-self: center;
-	border-top-left-radius: 2rem;
 `;
 
 export const AvatarContainer = styled.div`
@@ -97,7 +100,7 @@ export const ViewProfileBtn = styled.button`
 	color: ${colors.white};
 	outline: none;
 	border: none;
-	border-radius: 0.4rem;
+	border-radius: ${borderRadius.borderRadiusS};
 	transition: linear 0.15s;
 	margin: 0.2rem;
 	cursor: pointer;

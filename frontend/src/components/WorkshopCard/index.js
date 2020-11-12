@@ -4,8 +4,10 @@ import { useHistory } from 'react-router-dom';
 import { Button } from '../../style/Button';
 import moment from 'moment'
 
-const WorkshopCard = ({ workshop, user }) => {
-	// console.log(user);
+const WorkshopCard = ({ workshop }) => {
+	//todo remove seats available from card if attended workshop
+	// const currentTime = new Date().dateNow
+	// console.log(currentTime);
 
 	const history = useHistory();
 
@@ -41,7 +43,7 @@ const WorkshopCard = ({ workshop, user }) => {
 
 	return (
 		<>
-			<CardWrapper>
+			<CardWrapper category={workshop.category}>
 				<ContentWrapper>
 					<div className='workshop-info'>
 						<p>{workshop.title}</p>
@@ -54,7 +56,9 @@ const WorkshopCard = ({ workshop, user }) => {
 							{/* {dateToFormat(workshop.date_start)} --- {dateToFormat(workshop.date_end)} */}
 						</p>
 						<p>{workshop.subtitle}</p>
-						<p>{user.id in workshop.attendees ? 'Registered' : null}</p>
+						<p>
+							Seats available: {workshop.max_seats - workshop.attendees.length}
+						</p>
 					</div>
 				</ContentWrapper>
 				<ReserveBtnWrapper>
