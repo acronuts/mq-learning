@@ -78,40 +78,42 @@ export const UserProfileContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: flex-end;
 	margin-right: 0.8rem;
+	width: 100%;
 `;
 
 export const UserWelcome = styled.p`
 	font-size: ${fontSizes.normal};
-	padding-top: 1rem;
+	padding-top: 2rem;
 	line-height: 1.5rem;
-	text-decoration: none;
 `;
 
 export const ViewProfileBtnWrapper = styled.div`
 	display: flex;
 	justify-content: center;
+	margin-top: 1rem;
 `;
 
 export const ViewProfileBtn = styled.button`
 	padding: 0.5rem 0.8rem;
 	font-size: ${fontSizes.small};
-	background: ${colors.purpleMain};
-	color: ${colors.white};
 	outline: none;
 	border: none;
 	border-radius: ${borderRadius.borderRadiusS};
 	transition: linear 0.15s;
 	margin: 0.2rem;
 	cursor: pointer;
-
+	background: #ba3bbf;
+	color: ${colors.white};
 	:hover {
-		background: ${colors.purpleMainHover};
+		background: #82298f;
 	}
 `;
 
 export const TokensValidText = styled.p`
-	font-size: ${fontSizes.medium};
+	font-size: ${fontSizes.normal};
+	margin-left: 3rem;
 	align-self: center;
 	display: flex;
 	flex-direction: column;
@@ -119,5 +121,4 @@ export const TokensValidText = styled.p`
 
 export const CompanyText = styled.p`
 	font-size: ${fontSizes.normal};
-	align-self: center;
 `;

@@ -66,12 +66,12 @@ const TopBar = ({ user }) => {
 					<UserProfileContainer>
 						<UserWelcome>Welcome, {fullName}</UserWelcome>
 						<CompanyText>
-							{user.company ? user.company.name : 'No info provided'}
+							Company: {user.company ? user.company.name : 'No info provided'}
 						</CompanyText>
 						<ViewProfileBtnWrapper>
-							<ViewProfileBtn>
-								<Link to='/user-profile/'>edit profile</Link>
-							</ViewProfileBtn>
+							<Link to='/user-profile/'>
+								<ViewProfileBtn>edit profile</ViewProfileBtn>
+							</Link>
 							<ViewProfileBtn onClick={logOutHandler}>logout</ViewProfileBtn>
 						</ViewProfileBtnWrapper>
 					</UserProfileContainer>

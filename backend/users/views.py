@@ -1,7 +1,8 @@
 from django.contrib.auth import get_user_model
 from rest_framework import filters
-from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, GenericAPIView
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.response import Response
 
 from users.permissions import IsCompanyAdmin
 from users.serializers import UserSerializer
@@ -55,3 +56,21 @@ class ListCompanyAdminsView(ListAPIView):
 
     def get_queryset(self):
         return User.objects.filter(isAdmin=True)
+
+
+class SetCompanyAdminView(GenericAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_field = 'id'
+    permission_classes = [IsAdminUser]
+
+    def post(self, request, *args, **kwargs):
+        user = self.get_object()
+        if user.isAdmin:
+            user.isAdmin = False
+            user.save()
+            return Response(status=200, data=f'{user} has been unregistered as admin')
+        else:
+            user.isAdmin = True
+            user.save()
+            return Response(status=200, data=f'{user} has been set as admin')

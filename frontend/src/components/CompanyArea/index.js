@@ -24,7 +24,6 @@ const CompanyArea = ({ user }) => {
 					<p>{user.company.zip_code}</p>
 					<p>{user.company.city}</p>
 					<p>{user.company.country}</p>
-					<p>{user.company.country}</p>
 				</RightSection>
 			</InfoContainer>
 		</CompanyAreaWrapper>

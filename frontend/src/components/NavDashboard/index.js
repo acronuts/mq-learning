@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import { Container } from '../../style/Container';
 import { Button } from '../../style/Button';
 import {
@@ -6,6 +7,7 @@ import {
 	SectionWorkshop,
 	NavigationWrapper,
 	BtnContainer,
+	SubNavbar,
 } from './styled';
 import WorkshopCard from '../WorkshopCard';
 import EmployeeCard from '../EmployeeCard';
@@ -26,64 +28,90 @@ const NavigateDashboard = ({
 		<Container>
 			<NavigationWrapper>
 				<NavbarDiV>
-					<Button
+					<Link
 						btnNavDashboard
 						onClick={() => setActive('workshop')}
 						className={active === 'workshop' ? 'active' : null}
 					>
 						Workshops
-					</Button>
-					<Button
+					</Link>
+					<Link
 						btnNavDashboard
 						onClick={() => setActive('scheduledWorkshop')}
 						className={active === 'scheduledWorkshop' ? 'active' : null}
 					>
 						Scheduled Workshops
-					</Button>
-					<Button
+					</Link>
+					<Link
 						btnNavDashboard
 						onClick={() => setActive('attendedWorkshop')}
 						className={active === 'attendedWorkshop' ? 'active' : null}
 					>
 						Attended Workshops
-					</Button>
-					<Button
+					</Link>
+					<Link
 						btnNavDashboard
 						onClick={() => setActive('resources')}
 						className={active === 'resources' ? 'active' : null}
 					>
 						Resources
-					</Button>
+					</Link>
 
 					{user.isAdmin ? (
 						<Fragment>
-							<Button
+							<Link
 								btnNavDashboard
 								onClick={() => setActive('employees')}
 								className={active === 'employees' ? 'active' : null}
 							>
 								Employees
-							</Button>
-							<Button
+							</Link>
+							<Link
 								btnNavDashboard
 								onClick={() => setActive('company')}
 								className={active === 'company' ? 'active' : null}
 							>
 								Company
-							</Button>
+							</Link>
 						</Fragment>
 					) : null}
 
 					{user.is_staff ? (
-						<Button
+						<Link
 							btnNavDashboard
 							onClick={() => setActive('compAdmins')}
 							className={active === 'compAdmins' ? 'active' : null}
 						>
 							Company Administrators
-						</Button>
+						</Link>
 					) : null}
 				</NavbarDiV>
+
+				{/* SUBNAVBAR */}
+				{/* {active === 'workshop' ||
+				active === 'scheduledWorkshop' ||
+				active === 'attendedWorkshop' ? (
+					<SubNavbar>
+						<Link
+							onClick={() => setActive('self')}
+							className={active === 'self' ? 'active' : null}
+						>
+							Self
+						</Link>
+						<Link
+							onClick={() => setActive('work')}
+							className={active === 'work' ? 'active' : null}
+						>
+							Work
+						</Link>
+						<Link
+							onClick={() => setActive('relations')}
+							className={active === 'relations' ? 'active' : null}
+						>
+							Relations
+						</Link>
+					</SubNavbar>
+				) : null} */}
 
 				<SectionWorkshop>
 					{active === 'workshop' ? (
@@ -93,7 +121,7 @@ const NavigateDashboard = ({
 									<WorkshopCard Zoom workshop={workshop} key={workshop.id} />
 								))
 							) : (
-								<h1>loading..</h1>
+								<h1 style={message}>loading..</h1>
 							)}
 						</Fragment>
 					) : null}
@@ -131,10 +159,9 @@ const NavigateDashboard = ({
 					) : null}
 
 					{/* todo: create resources component */}
+					{active === 'resources' ? <h4>Resources</h4> : null}
 
-					{active === 'resources' ? <h4 style={message}>Resources</h4> : null}
-
-					{active === 'employees' || active === 'compAdmin' ? (
+					{active === 'employees' ? (
 						<Fragment>
 							{employees.length ? (
 								employees.map(employee => <EmployeeCard employee={employee} />)
@@ -146,15 +173,7 @@ const NavigateDashboard = ({
 						</Fragment>
 					) : null}
 
-					{active === 'company' ? (
-						<Fragment>
-							{user.company ? <CompanyArea user={user} /> : null}
-							<BtnContainer>
-								<Button>edit</Button>
-								<Button>save</Button>
-							</BtnContainer>
-						</Fragment>
-					) : null}
+					{user.company ? <CompanyArea user={user} /> : null}
 
 					{active === 'compAdmins' ? (
 						<Fragment>
@@ -174,8 +193,9 @@ const NavigateDashboard = ({
 };
 
 const message = {
-	marginTop: '100px',
-	fontWeight: '500',
+	marginTop: '9rem',
+	marginLeft: '2rem',
+	fontWeight: '400',
 };
 
 export default NavigateDashboard;

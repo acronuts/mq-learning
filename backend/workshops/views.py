@@ -1,10 +1,12 @@
 from datetime import datetime, timedelta
 import pytz
+from django.core.mail import send_mail
 from rest_framework import filters
 from rest_framework.generics import ListAPIView, GenericAPIView, RetrieveAPIView, CreateAPIView, DestroyAPIView
 from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 
+from tokens.models import Token
 from workshops.models import Workshop
 from workshops.serializers import WorkshopSerializer
 
@@ -42,12 +44,17 @@ class ReserveWorkshopView(GenericAPIView):
         workshop = self.get_object()
         user = request.user
         if workshop in user.m2m_workshops.all():
-            if workshop.date_start < present + timedelta(days=1):
+            if workshop.date_start < present + timedelta(days=3):
                 return Response(status=403, data="Sorry, you're not allowed to unregister anymore")
             else:
                 user.m2m_workshops.remove(workshop)
+                transactions = Account.objects.filter(owner=user)
+                tokens = Token.objects.filter(employeeToken__in=transactions, status='used').order_by('created')
                 balance = Account(owner=user, credit=workshop.cost, company=user.company)
                 balance.save()
+                for token in tokens[:workshop.cost]:
+                    token.status = 'valid'
+                    token.save()
                 return Response(status=200,
                                 data=f'You have successfully unregistered. {workshop.cost} credits have been credited back to your account')
         else:
@@ -60,8 +67,30 @@ class ReserveWorkshopView(GenericAPIView):
                 return Response(status=403, data="You can't register for past events")
             else:
                 user.m2m_workshops.add(workshop)
+                transactions = Account.objects.filter(owner=user)
+                tokens = Token.objects.filter(employeeToken__in=transactions, status='valid').order_by('created')
                 balance = Account(owner=user, debit=workshop.cost, company=user.company)
                 balance.save()
+                for token in tokens[:workshop.cost]:
+                    token.status = 'used'
+                    token.save()
+
+                # send_mail(
+                #     f'Registration for {workshop.title}',
+                #     f'Hello {user.first_name}, \n\nThank you for registering to our event!\n\n'
+                #     'We’re looking forward to seeing you there.\n\n'
+                #     'Here are the details: \n'
+                #     f'{workshop.title}\n'
+                #     f'{workshop.date_start:%B %d, %Y, %H:%M} - {workshop.date_end:%H:%M}\n'
+                #     f'{workshop.location}\n\n'
+                #     f'For more information go to: {workshop.link}\n\n'
+                #     'Kind regards\n'
+                #     'MQ Learning',
+                #     'joost.motion@gmail.com',
+                #     [f'{user.email}'],
+                #     fail_silently=False,
+                # )
+
         return Response(status=200, data=f'Thank for registering for workshop: {workshop.title}')
 
 

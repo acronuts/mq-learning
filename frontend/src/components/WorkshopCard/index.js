@@ -1,5 +1,10 @@
 import React from 'react';
-import { CardWrapper, ContentWrapper, ReserveBtnWrapper } from './styled';
+import {
+	CardWrapper,
+	BannerWrapper,
+	ContentWrapper,
+	ReserveBtnWrapper,
+} from './styled';
 import { useHistory } from 'react-router-dom';
 import { Button } from '../../style/Button';
 import moment from 'moment'
@@ -43,25 +48,54 @@ const WorkshopCard = ({ workshop }) => {
 
 	return (
 		<>
-			<CardWrapper category={workshop.category}>
+			<CardWrapper>
+				<BannerWrapper banner={workshop.banner} />
 				<ContentWrapper>
-					<div className='workshop-info'>
-						<p>{workshop.title}</p>
-						<p>{workshop.location}</p>
-						<p>
-							{dateToFormat(workshop.date_start)} ---{' '}
-							{dateCheck(workshop.date_start) === dateCheck(workshop.date_end)
-								? dateToTime(workshop.date_end)
-								: dateToFormat(workshop.date_end)}
-							{/* {dateToFormat(workshop.date_start)} --- {dateToFormat(workshop.date_end)} */}
-						</p>
-						<p>{workshop.subtitle}</p>
-						<p>
-							Seats available: {workshop.max_seats - workshop.attendees.length}
-						</p>
+					<div className='title-section'>
+						<h5>{workshop.title}</h5>
+					</div>
+					<div className='info-section'>
+						<div className='subtitle'>
+							<p>{workshop.subtitle}</p>
+						</div>
+						<div className='info'>
+							<div className='left'>
+								<p>
+									<i
+										class={
+											workshop.location.toLowerCase() === 'online'
+												? 'fas fa-laptop'
+												: 'fas fa-map-marker-alt'
+										}
+									></i>
+									{workshop.location}
+								</p>
+								<p>
+									<i class='far fa-calendar-alt'></i>
+									{dateToFormat(workshop.date_start)}
+								</p>
+							</div>
+							<div className='right'>
+								<p>
+									<i class='far fa-money-bill-alt'></i>
+									{workshop.cost} credits
+								</p>
+								<p>
+									<i class='fas fa-chair'></i>
+									{workshop.max_seats - workshop.number_of_attendees} seats left
+								</p>
+							</div>
+						</div>
 					</div>
 				</ContentWrapper>
 				<ReserveBtnWrapper>
+					<i
+						class={
+							workshop.category
+								? `fas fa-circle ${workshop.category}`
+								: 'fas fa-circle'
+						}
+					></i>
 					<Button
 						moreInfoBtn
 						onClick={() => history.push(`/workshop-single/${workshop.id}/`)}

@@ -24,6 +24,7 @@ class Workshop(models.Model):
     date_start = models.DateTimeField()
     date_end = models.DateTimeField()
     category = models.CharField(max_length=9, choices=cat_choices, blank=True)
+    link = models.URLField(blank=True)
     cost = models.IntegerField()
     max_seats = models.IntegerField(default=20)
     attendees = models.ManyToManyField(to=User, related_name='m2m_workshops', blank=True)

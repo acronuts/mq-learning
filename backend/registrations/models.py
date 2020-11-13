@@ -18,3 +18,12 @@ class RegistrationProfile(models.Model):
 
     def __str__(self):
         return f'Registration for {self.user.email}'
+
+
+class PasswordReset(models.Model):
+    code = models.CharField(max_length=5, default=code_generator)
+    code_used = models.BooleanField(default=False)
+    email = models.EmailField()
+
+    def __str__(self):
+        return f'Password reset for {self.email}'
