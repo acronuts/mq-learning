@@ -1,0 +1,5 @@
+Hello {{first_name}} {{last_name}},
+
+Please use the following code to revalidate your email address again: {{code}}.
+
+Thank you for joining MQ Learning!

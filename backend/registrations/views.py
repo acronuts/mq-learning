@@ -1,6 +1,10 @@
+import os
+from email.mime.image import MIMEImage
+
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import get_template
 
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
@@ -31,15 +35,32 @@ class RegistrationView(GenericAPIView):
         registration = RegistrationProfile(user=new_user)
         registration.save()
 
-        # send_mail(
-        #     'Validation code MQ learning',
-        #     f'Hello {new_user.first_name} {new_user.last_name},\n\n'
-        #     f'Please use the following code to validate your email address: {registration.code}.\n\n'
-        #     f'Thank you for joining MQ Learning',
-        #     'joost.motion@gmail.com',
-        #     [f'{new_user.email}'],
-        #     fail_silently=False,
-        # )
+        msg_plain = get_template('registration_email.txt')
+        msg_html = get_template('registration_email.html')
+
+        context = ({
+            'first_name': new_user.first_name,
+            'last_name': new_user.last_name,
+            'code': registration.code
+        })
+
+        email = EmailMultiAlternatives(
+            'Validation code MQ learning',
+            msg_plain.render(context),
+            'joost.motion@gmail.com',
+            [f'{new_user.email}']
+        )
+        email.attach_alternative(msg_html.render(context), "text/html")
+        email.mixed_subtype = 'related'
+
+        for f in ['mq-logo.jpg']:
+            fp = open(os.path.join(os.path.dirname('/opt/project/frontend/src/assets/images/'), f), 'rb')
+            email_img = MIMEImage(fp.read())
+            fp.close()
+            email_img.add_header('Content-ID', '<{}>'.format(f))
+            email.attach(email_img)
+
+        email.send(fail_silently=False)
 
         return Response(status=200)
 
@@ -74,15 +95,32 @@ class PasswordResetView(GenericAPIView):
         pw_reset = PasswordReset(email=email)
         pw_reset.save()
 
-        # send_mail(
-        #     'Password reset MQ learning',
-        #     f'Hello {user.first_name} {user.last_name},\n\n'
-        #     f'Please use the following code to revalidate your email address again: {pw_reset.code}.\n\n'
-        #     'Thank you for joining MQ Learning',
-        #     'joost.motion@gmail.com',
-        #     [f'{user.email}'],
-        #     fail_silently=False,
-        # )
+        msg_plain = get_template('validation_email.txt')
+        msg_html = get_template('validation_email.html')
+
+        context = ({
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'code': pw_reset.code
+        })
+
+        email = EmailMultiAlternatives(
+            'Validation code MQ learning',
+            msg_plain.render(context),
+            'joost.motion@gmail.com',
+            [f'{user.email}']
+        )
+        email.attach_alternative(msg_html.render(context), "text/html")
+        email.mixed_subtype = 'related'
+
+        for f in ['mq-logo.jpg']:
+            fp = open(os.path.join(os.path.dirname('/opt/project/frontend/src/assets/images/'), f), 'rb')
+            email_img = MIMEImage(fp.read())
+            fp.close()
+            email_img.add_header('Content-ID', '<{}>'.format(f))
+            email.attach(email_img)
+
+        email.send(fail_silently=False)
 
         return Response(status=200)
 
