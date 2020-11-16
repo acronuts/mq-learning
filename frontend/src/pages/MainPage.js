@@ -9,7 +9,7 @@ import userAction from '../store/actions/userAction';
 import scheduledWorkshopAction from '../store/actions/scheduledWorkshopAction';
 import attendedWorkshopAction from '../store/actions/attendedWorkshopAction';
 import employeesAction from '../store/actions/employeesAction';
-import companyAdminAction from '../store/actions/companyAdminAction';
+import companiesAction from '../store/actions/companiesAction';
 
 const MainPage = () => {
 	const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const MainPage = () => {
 	const [scheduledWorkshops, setScheduledWorkshops] = useState([]);
 	const [attendedWorkshops, setAttendedWorkshops] = useState([]);
 	const [employees, setEmployees] = useState([]);
-	const [compAdmins, setCompAdmins] = useState([]);
+	const [companies, setCompanies] = useState([]);
 
 	useEffect(() => {
 		const getData = async () => {
@@ -27,13 +27,13 @@ const MainPage = () => {
 			const scheduledWorkshopsData = await dispatch(scheduledWorkshopAction());
 			const attendedWorkshopsData = await dispatch(attendedWorkshopAction());
 			const employeesData = await dispatch(employeesAction());
-			const compAdminsData = await dispatch(companyAdminAction());
+			const companiesData = await dispatch(companiesAction());
 			setWorkshops(workshopData);
 			setUser(userData);
 			setScheduledWorkshops(scheduledWorkshopsData);
 			setAttendedWorkshops(attendedWorkshopsData);
 			setEmployees(employeesData);
-			setCompAdmins(compAdminsData);
+			setCompanies(companiesData);
 			console.log('fetching');
 		};
 		getData();
@@ -49,7 +49,7 @@ const MainPage = () => {
 						scheduledWorkshops={scheduledWorkshops}
 						attendedWorkshops={attendedWorkshops}
 						employees={employees}
-						compAdmins={compAdmins}
+						companies={companies}
 						user={user}
 					/>
 				) : null}

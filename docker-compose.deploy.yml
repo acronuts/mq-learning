@@ -19,7 +19,12 @@ services:
     restart: always
     env_file:
       - ./envs/prod.env
-    command: 'sh /scripts/run.sh'
+    command: bash -c "
+        python manage.py migrate &&
+        python manage.py collectstatic --no-input &&
+        rm -rf /frontend/build/* &&
+        cp -R /frontend_tmp/build/* /frontend/build &&
+        gunicorn -w 4 -b 0.0.0.0:8000 app.wsgi:application"
     #these volumes pass the data from your computer to the docker container
     volumes:
       - frontend:/frontend/build

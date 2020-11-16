@@ -12,8 +12,6 @@ import { connect } from 'react-redux';
 
 import {
 	LoginContainer,
-	LeftSide,
-	RightSide,
 	Title,
 	InputsContainer,
 	RegMessage,

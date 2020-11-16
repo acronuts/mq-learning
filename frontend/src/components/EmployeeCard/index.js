@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
 	CardWrapper,
 	AvatarContainer,
@@ -10,8 +11,30 @@ import {
 } from './styled';
 import avatar from '../../assets/images/avatar-placeholder.png';
 import { Button } from '../../style/Button';
+import allocateTokenUserAction from '../../store/actions/allocateTokenUserAction';
 
 const EmployeeCard = ({ employee }) => {
+	const dispatch = useDispatch();
+
+	const [tokenInput, setTokenInput] = useState('');
+
+	const updateField = e => {
+		setTokenInput({
+			...tokenInput,
+			[e.currentTarget.name]: e.currentTarget.value,
+		});
+	};
+
+	const handleAllocateTokenUser = e => {
+		e.preventDefault();
+		const getData = async () => {
+			return await dispatch(allocateTokenUserAction(employee.id));
+		};
+		getData();
+	};
+
+	console.log('input', tokenInput);
+
 	const fullName = `${employee.first_name} ${employee.last_name}`;
 
 	return (
@@ -36,14 +59,18 @@ const EmployeeCard = ({ employee }) => {
 					<TokenSection>
 						<p>
 							<span>Credit amount:</span>{' '}
-							{employee.available_credit.total_available}
+							{employee.available_credit.total_available
+								? employee.available_credit.total_available
+								: 0}
 						</p>
 					</TokenSection>
 					<AllocateTokenSection>
 						<span>Allocate credits:</span>
-						<input type='number' />
+						<input onChange={updateField} type='number' name='tokenInput' />
 					</AllocateTokenSection>
-					<Button save>save</Button>
+					<Button save onClick={handleAllocateTokenUser}>
+						save
+					</Button>
 				</RightSection>
 			</InfoContainer>
 		</CardWrapper>

@@ -1,15 +1,22 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { colors, borderRadius, fontSizes } from '../../style/theme';
 
 export const CardWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
-	margin: 0 auto;
 	width: 30%;
-	height: 33rem;
+	height: 35rem;
 	background: ${colors.white};
-	border-radius: 0.35rem;
+	border-radius: ${borderRadius.borderRadius};
+	border-top: 1.5rem solid
+		${props =>
+			props.category === `work`
+				? `${colors.workshopWork}`
+				: props.category === 'self'
+				? `${colors.workshopSelf}`
+				: props.category === 'rela'
+				? `${colors.workshopRelations}`
+				: `${colors.dimGray}`};
 	box-shadow: 0px 0px 8px -1px rgba(0, 0, 0, 0.75);
 `;
 
@@ -19,8 +26,6 @@ export const BannerWrapper = styled.div`
 	background-position: center;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
-	border-top-left-radius: ${borderRadius.borderRadiusS};
-	border-top-right-radius: ${borderRadius.borderRadiusS};
 `;
 
 export const ContentWrapper = styled.div`
@@ -52,7 +57,9 @@ export const ContentWrapper = styled.div`
 			margin-right: 0.7rem;
 		}
 
-		.subtitle {
+		.description {
+			padding: 0 1rem;
+			text-align: justify;
 			height: 100%;
 			color: rgba(0, 0, 0, 0.45);
 		}
@@ -61,6 +68,7 @@ export const ContentWrapper = styled.div`
 			margin-top: 0.7rem;
 			display: flex;
 			justify-content: space-between;
+			font-size: ${fontSizes.small};
 		}
 	}
 `;
@@ -74,20 +82,10 @@ export const ReserveBtnWrapper = styled.div`
 	padding: 0.5rem;
 	border-top: 1px solid rgba(0, 0, 0, 0.25);
 	position: relative;
-
-	i {
-		margin: 0.5rem 0 0.5rem 1rem;
-	}
-
-	.work {
-		color: ${colors.workshopWork};
-	}
-
-	.rela {
-		color: ${colors.workshopRelationsHover};
-	}
-
-	.self {
-		color: ${colors.workshopSelf};
+	p {
+		padding-left: .5rem;
+		width: 70%;
+		font-size: ${fontSizes.small};
+		color: rgba(0, 0, 0, 0.45);
 	}
 `;

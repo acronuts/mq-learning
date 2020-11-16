@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { ModalExtContainer, ModalIntContainer, ContentSection } from './styled';
 import { Button } from '../../style/Button';
@@ -13,10 +13,38 @@ const Modal = ({ handleClose, workshop, user }) => {
 		e.preventDefault();
 		setCurrentStage(currentStage + 1);
 		const getData = async () => {
-			const data = await dispatch(ReservationAction(workshop.id));
+			return await dispatch(ReservationAction(workshop.id));
 		};
 		getData();
 	};
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			if (currentStage === 1) {
+				handleClose();
+				window.location.reload();
+			}
+		}, 2000);
+		return () => clearTimeout(timer);
+	}, [currentStage, handleClose]);
+
+	// const checkTokens = () => {
+	// 	if (user.available_credits) {
+	// 		if (user.available_credits.total_available >= workshop.cost) {
+	// 			return (
+	// 				<p>
+	// 					Thanks for registering, {user.first_name}! You are all set to attend
+	// 					the workshop!
+	// 				</p>
+	// 			);
+	// 		} else {
+	// 			return (
+	// 				<p>You don't own enough credits. Please contact administrator.</p>
+	// 			);
+	// 		}
+	// 	}
+	// 	return user.available_credits;
+	// };
 
 	return (
 		<Fragment>
@@ -24,28 +52,39 @@ const Modal = ({ handleClose, workshop, user }) => {
 				<ModalIntContainer>
 					<ContentSection>
 						{currentStage === 0 ? (
-							<p>
-								Are you sure you want to register? This action will consume{' '}
-								{workshop.cost} credits from you!
-							</p>
+							<Fragment>
+								{workshop.attendees ? (
+									workshop.attendees.includes(user.id) ? (
+										<p>
+											Are you sure you want to unregister? {workshop.cost}{' '}
+											credit(s) will be credited back to you account.
+										</p>
+									) : (
+										<p>
+											Are you sure you want to register? This action will
+											consume {workshop.cost} credits from you!
+										</p>
+									)
+								) : null}
+							</Fragment>
 						) : null}
 
 						{currentStage === 1 ? (
 							<Fragment>
-								{user.available_credit.total_available < workshop.cost ? (
+								{user.available_credit.total_available < workshop.cost &&
+								!workshop.attendees.includes(user.id) ? (
 									<p>
 										Sorry, you don't have enough tokens. Please, contact
 										administrator.
 									</p>
+								) : workshop.attendees.includes(user.id) ? (
+									<p>You have successfully unregistered from the workshop!</p>
 								) : (
 									<p>
-										Congratulations, {user.first_name}! You are all set to
-										attend the workshop!
+										Thanks for registering, {user.first_name}! You are all set
+										to attend the workshop
 									</p>
 								)}
-								<Button modalBtn onClick={handleClose}>
-									Back
-								</Button>
 							</Fragment>
 						) : null}
 

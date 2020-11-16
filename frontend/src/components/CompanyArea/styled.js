@@ -25,7 +25,7 @@ export const LogoContainer = styled.div`
 		padding: 0.5rem;
 		border-radius: ${borderRadius.borderRadius};
 		width: 100%;
-		height: 45%;
+		height: 100%;
 	}
 `;
 

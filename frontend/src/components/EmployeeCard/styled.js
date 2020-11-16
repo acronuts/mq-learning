@@ -5,8 +5,7 @@ import cardBg from '../../assets/images/card-bg1.jpg';
 export const CardWrapper = styled.section`
 	display: flex;
 	width: 70%;
-	height: auto;
-	margin: 0 1rem;
+	height: 12rem;
 	background: url(${cardBg});
 	background-position: 100%;
 	background-size: cover;
@@ -31,6 +30,7 @@ export const InfoContainer = styled.section`
 	display: flex;
 
 	p {
+		margin: .15rem 0;
 		font-weight: 300;
 		font-size: ${fontSizes.normal};
 	}
@@ -44,6 +44,7 @@ export const LeftSection = styled.section`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+	justify-content: center;
 	width: 60%;
 	padding: 1.2rem;
 

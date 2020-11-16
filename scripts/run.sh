@@ -1,6 +1,5 @@
-#!/bin/bash
-python -c "import time; time.sleep(3)" #wait for postgres to startup
+#!/usr/bin/env bash
 python manage.py migrate
 python manage.py collectstatic --no-input
-rm -rf /frontend/build/* && cp -r /frontend_tmp/* /frontend
+rm -rf /frontend/build/* && cp -R /frontend_tmp/build/* /frontend/build
 gunicorn -w 4 -b 0.0.0.0:8000 app.wsgi:application

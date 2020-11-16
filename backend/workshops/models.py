@@ -15,7 +15,7 @@ class Workshop(models.Model):
         ('rela', 'Relations')
     ]
 
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=255)
     subtitle = models.CharField(max_length=255, blank=True)
     description = models.TextField()
     banner = models.ImageField(upload_to=user_directory_path, blank=True)

@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Container } from '../../style/Container';
 import mqlogo from '../../assets/images/mq-logo.jpg';
-import avatar from '../../assets/images/avatar-placeholder.png';
 import {
 	ViewProfileBtnWrapper,
 	ViewProfileBtn,
@@ -11,7 +10,6 @@ import {
 	TopBarCenter,
 	TopBarRight,
 	AvatarContainer,
-	Avatar,
 	UserProfileContainer,
 	UserWelcome,
 	TokensValidText,
@@ -60,9 +58,7 @@ const TopBar = ({ user }) => {
 					</TokensValidText>
 				</TopBarCenter>
 				<TopBarRight>
-					<AvatarContainer>
-						<Avatar src={user.avatar ? user.avatar : avatar}></Avatar>
-					</AvatarContainer>
+					<AvatarContainer user={user} />
 					<UserProfileContainer>
 						<UserWelcome>Welcome, {fullName}</UserWelcome>
 						<CompanyText>

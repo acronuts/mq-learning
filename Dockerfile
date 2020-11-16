@@ -22,8 +22,7 @@ RUN echo "source activate mq_learning_env" >~/.bashrc
 # create a scripts folder
 RUN mkdir -p /scripts
 COPY ./scripts /scripts
-RUN chmod +x ./scripts*
-
+RUN chmod +x ./scripts/*
 
 COPY ./backend /backend
 
