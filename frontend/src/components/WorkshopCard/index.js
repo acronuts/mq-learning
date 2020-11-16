@@ -51,16 +51,16 @@ const WorkshopCard = ({ workshop }) => {
 						</div>
 						<div className='info'>
 							<div className='left'>
-								<p>
+						{/*	<p>
 									<i
 										className={
 											workshop.location.toLowerCase() === 'online'
 												? 'fas fa-laptop'
 												: 'fas fa-map-marker-alt'
 										}
-									></i>
+									></i> 
 									{workshop.location} 
-								</p>
+									</p>   */}
 								<p>
 									<i className='far fa-calendar-alt'></i>
 									{dateToFormat(workshop.date_start)}

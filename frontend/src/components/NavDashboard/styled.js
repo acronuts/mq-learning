@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled , {css }from 'styled-components';
 import { fontSizes } from '../../style/theme';
+
 
 export const NavigationWrapper = styled.section`
 	display: flex;
@@ -51,4 +52,17 @@ export const SectionWorkshop = styled.div`
 		list-style-type: none;
 		scroll-snap-align: start;
 	}
-`;
+${props =>
+		props.searchBar &&
+		css`
+			gap: 1rem; 
+			min-height: 4rem;
+			padding: 0rem;
+			display:flex;
+			background: red; 
+			width: 20rem;
+			height: auto;
+			margin: 0.5rem 0;
+			font-size: ${fontSizes.small};
+		`}
+`;	

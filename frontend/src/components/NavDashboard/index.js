@@ -53,9 +53,10 @@ const NavigateDashboard = ({
 						Resources
 					</Link>
 
+					
+
 					{user.isAdmin ? (
 						<Fragment>
-							<SearchBarComponent></SearchBarComponent>
 							
 							
 							<Link
@@ -85,6 +86,8 @@ const NavigateDashboard = ({
 						</Link>
 					) : null}
 				</NavbarDiV>
+
+				
 
 				<SectionWorkshop>
 					{active === 'workshop' ? (
@@ -136,6 +139,13 @@ const NavigateDashboard = ({
 
 					{active === 'employees' ? (
 						<Fragment>
+							<SectionWorkshop searchBar>
+				
+						<Fragment>
+							<SearchBarComponent></SearchBarComponent>
+						</Fragment>
+					
+			</SectionWorkshop >
 							{employees.length ? (
 								employees.map(employee => (
 									<EmployeeCard employee={employee} key={employee.id} />
@@ -165,7 +175,9 @@ const NavigateDashboard = ({
 					) : null}
 				</SectionWorkshop>
 			</NavigationWrapper>
+			
 		</Container>
+	
 	);
 };
 
