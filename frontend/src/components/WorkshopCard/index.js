@@ -59,7 +59,7 @@ const WorkshopCard = ({ workshop }) => {
 												: 'fas fa-map-marker-alt'
 										}
 									></i>
-									{workshop.location} */}
+									{workshop.location} 
 								</p>
 								<p>
 									<i className='far fa-calendar-alt'></i>
