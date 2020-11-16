@@ -14,8 +14,8 @@ const Routes = () => {
 				<Route exact path='/' component={Login} />
 				<Route exact path='/mainpage/' component={WrapperComponent(MainPage)} />
 				<Route exact path='/workshop-single/:workshopId/' component={WrapperComponent(Workshop)}/>
-				<Route exact path='/user-profile/' component={WrapperComponent(UserProfile)} />
-				<Route exact path='/test/' component={TestPage} />
+				
+				
 			</Switch>
 		</Router>
 	);

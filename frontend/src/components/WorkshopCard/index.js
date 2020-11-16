@@ -61,14 +61,14 @@ const WorkshopCard = ({ workshop }) => {
 						<div className='info'>
 							<div className='left'>
 								<p>
-									<i
-										class={
+					{/*			<i
+								class={
 											workshop.location.toLowerCase() === 'online'
 												? 'fas fa-laptop'
 												: 'fas fa-map-marker-alt'
 										}
 									></i>
-									{workshop.location}
+									{workshop.location} */}
 								</p>
 								<p>
 									<i class='far fa-calendar-alt'></i>

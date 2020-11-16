@@ -13,6 +13,7 @@ import WorkshopCard from '../WorkshopCard';
 import EmployeeCard from '../EmployeeCard';
 import CompanyArea from '../CompanyArea';
 import CompanyAdminCard from '../CompAdmCard';
+import SearchBarComponent from '../SearchButton';
 
 const NavigateDashboard = ({
 	workshops,
@@ -59,6 +60,9 @@ const NavigateDashboard = ({
 
 					{user.isAdmin ? (
 						<Fragment>
+							<SearchBarComponent></SearchBarComponent>
+							
+							
 							<Link
 								btnNavDashboard
 								onClick={() => setActive('employees')}

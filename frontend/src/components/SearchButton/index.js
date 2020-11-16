@@ -4,23 +4,24 @@ import {Container} from '../../style/Container';
 import {Button} from '../../style/Button'
 import baseUrl from '../../store/baseUrl'
 import searchAction from '../../store/actions/searchAction';
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 
 
 
-
-const SearchBarComponent=({workshop})=>{
+const SearchBarComponent=()=>{
     const [search, setSearch] = useState ('');
     const [results, setResults] = useState([]);
+    const companyId= useSelector(state => state.userReducer.company.id)
+
     const dispatch = useDispatch();
 
     const onSubmit = async (e) => {
         e.preventDefault(); 
         try {
-            
-            const data = await dispatch (searchAction(search));
+            const data = await dispatch (searchAction(search, companyId));
             setResults(data);
+            
         } catch (error) {} 
        
     }
@@ -28,6 +29,8 @@ const SearchBarComponent=({workshop})=>{
     useEffect(() => {
         
     },  ); 
+  
+
    
     return (
         
@@ -35,41 +38,19 @@ const SearchBarComponent=({workshop})=>{
         <Container>Search Button test
             
             <form onSubmit = {onSubmit}>
-             <SearchBar 
-             
-             value={search}
-             onChange={ e => setSearch(e.target.value)} 
-            placeholder="Search"
-            /></form>
-             <Button > <i class = "search_bar__submit">  Search</i></Button>
-
+                <SearchBar 
+                    className="search_bar"
+                    value={search}
+                    onChange={ e => setSearch(e.target.value)} 
+                    placeholder="Search"
+                />
             
-                    
-         
-            
+            </form> 
                    
         <ResultsDiv>
             {/*results.map(result =>(<img key ={result.id} alt='ABC logo' src={result.logo}/>))*/} 
-            {results.map(result =>(<ul key ={result.id}> 
-         
-                    
-                            
-                                <p>  {results.name}</p>
-                                <p>  Phone: {result.phone}</p>
-                                <p> Website: {result.website}</p>
-                                <p> Address: {result.address}</p>
-                                <p> Zip code: {result.zip_code}</p>
-                                <p> City: {result.city}</p>
-                                <p> Country: {result.country}</p>
-                                
-       
-            
-            
-            
-            
-            
-            
-            
+            {search.length > 0 && results.map(result =>(<ul key ={result.id}> 
+                <p> {result.first_name}</p> 
             </ul>))}
             
     
