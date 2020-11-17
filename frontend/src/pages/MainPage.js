@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch,  useSelector} from 'react-redux';
 import TopBar from '../components/Topbar';
 import Footer from '../components/Footer';
 import NavigateDashboard from '../components/NavDashboard';
@@ -14,11 +14,13 @@ import companiesAction from '../store/actions/companiesAction';
 const MainPage = () => {
 	const dispatch = useDispatch();
 	const [workshops, setWorkshops] = useState([]);
-	const [user, setUser] = useState([]);
+	//const [user, setUser] = useState([]);
 	const [scheduledWorkshops, setScheduledWorkshops] = useState([]);
 	const [attendedWorkshops, setAttendedWorkshops] = useState([]);
 	const [employees, setEmployees] = useState([]);
 	const [companies, setCompanies] = useState([]);
+	const user =  useSelector(state => state.user.user)
+	console.log(user)
 
 	useEffect(() => {
 		const getData = async () => {
@@ -29,7 +31,7 @@ const MainPage = () => {
 			const employeesData = await dispatch(employeesAction());
 			const companiesData = await dispatch(companiesAction());
 			setWorkshops(workshopData);
-			setUser(userData);
+			//setUser(userData);
 			setScheduledWorkshops(scheduledWorkshopsData);
 			setAttendedWorkshops(attendedWorkshopsData);
 			setEmployees(employeesData);

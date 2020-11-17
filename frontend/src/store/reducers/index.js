@@ -6,7 +6,7 @@ import { userReducer } from './userReducer';
 const reducer = combineReducers({
     loginReducer,
     regValReducer,
-    userReducer
+    user: userReducer
 });
 
 export default reducer
