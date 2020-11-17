@@ -29,7 +29,7 @@ class CreditCompanyAccountView(GenericAPIView):
         credit.save()
         for token in range(credit_amount):
             Token(companyToken=credit).save()
-        return Response(status=200)
+        return Response(status=200, data=f'You have credited {credit_amount} tokens to {company}')
 
 
 class CreditUserAccountView(GenericAPIView):

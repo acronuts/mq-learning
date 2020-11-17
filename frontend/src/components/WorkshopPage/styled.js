@@ -45,6 +45,9 @@ export const TopBarWrapper = styled.section`
 			right: 0;
 			font-size: ${fontSizes.medium};
 		}
+		i {
+			margin-right: 0.5rem;
+		}
 	}
 `;
 

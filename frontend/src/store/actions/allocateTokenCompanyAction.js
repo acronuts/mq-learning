@@ -1,12 +1,12 @@
 import baseUrl from '../baseUrl';
 
-export const allocateTokenUserAction = (employeeId, tokenAmount) => async (
+export const allocateTokenCompanyAction = (companyId, tokenAmount) => async (
 	dispatch,
 	getState
 ) => {
 	const token = getState().loginReducer.token || localStorage.getItem('token');
 
-	const url = `${baseUrl}/backend/api/accounts/user/${employeeId}/`;
+	const url = `${baseUrl}/backend/api/accounts/company/${companyId}/`;
 	const credits = JSON.stringify({
 		credit: parseInt(tokenAmount),
 	});
@@ -20,8 +20,8 @@ export const allocateTokenUserAction = (employeeId, tokenAmount) => async (
 	};
 	const response = await fetch(url, config);
 	const data = await response.json();
-	console.log(data);
+	console.log('data', data);
 	return data;
 };
 
-export default allocateTokenUserAction;
+export default allocateTokenCompanyAction;

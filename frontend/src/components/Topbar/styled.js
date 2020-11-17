@@ -120,12 +120,16 @@ export const ViewProfileBtn = styled.button`
 	}
 `;
 
-export const TokensValidText = styled.p`
+export const TokensValidText = styled.div`
 	font-size: ${fontSizes.normal};
 	margin-left: 3rem;
 	align-self: center;
 	display: flex;
 	flex-direction: column;
+
+	.hide {
+		display: none;
+	}
 `;
 
 export const CompanyText = styled.p`

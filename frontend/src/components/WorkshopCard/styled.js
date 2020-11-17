@@ -79,7 +79,7 @@ export const ReserveBtnWrapper = styled.div`
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0.5rem;
+	padding: 0.8rem;
 	border-top: 1px solid rgba(0, 0, 0, 0.25);
 	position: relative;
 	p {

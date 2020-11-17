@@ -29,12 +29,14 @@ const EmployeeCard = ({ employee }) => {
 	const handleAllocateTokenUser = e => {
 		e.preventDefault();
 		const getData = async () => {
-			return await dispatch(allocateTokenUserAction(employee.id));
+			return await dispatch(
+				allocateTokenUserAction(employee.id, tokenInput.tokenInput)
+			);
 		};
 		getData();
 	};
 
-	console.log('input', tokenInput);
+	console.log(employee.id);
 
 	const fullName = `${employee.first_name} ${employee.last_name}`;
 
@@ -59,7 +61,7 @@ const EmployeeCard = ({ employee }) => {
 				<RightSection>
 					<TokenSection>
 						<p>
-							<span>Credit amount:</span>{' '}
+							<span>Token amount:</span>{' '}
 							{employee.available_credit.total_available
 								? employee.available_credit.total_available
 								: 0}
@@ -67,7 +69,12 @@ const EmployeeCard = ({ employee }) => {
 					</TokenSection>
 					<AllocateTokenSection>
 						<span>Allocate credits:</span>
-						<input onChange={updateField} type='number' name='tokenInput' />
+						<input
+							onChange={updateField}
+							type='number'
+							name='tokenInput'
+							min='0'
+						/>
 					</AllocateTokenSection>
 					<Button save onClick={handleAllocateTokenUser}>
 						save

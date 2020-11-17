@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
 	AllocateTokenSection,
 	CardWrapper,
@@ -10,8 +11,32 @@ import {
 import avatar from '../../assets/images/avatar-placeholder.png';
 import { Button } from '../../style/Button';
 import { LogoContainer } from '../CompanyArea/styled';
+import allocateTokenCompanyAction from '../../store/actions/allocateTokenCompanyAction';
 
 const CompaniesCard = ({ company }) => {
+	const dispatch = useDispatch();
+
+	const [tokenInput, setTokenInput] = useState('');
+
+	const updateField = e => {
+		setTokenInput({
+			...tokenInput,
+			[e.currentTarget.name]: e.currentTarget.value,
+		});
+	};
+
+	const handleAllocateTokenCompany = e => {
+		e.preventDefault();
+		const getData = async () => {
+			return await dispatch(
+				allocateTokenCompanyAction(company.id, tokenInput.tokenInput)
+			);
+		};
+		getData();
+	};
+
+	console.log(company.id);
+
 	return (
 		// Components come from EmployeeCard
 		<CardWrapper>
@@ -26,9 +51,9 @@ const CompaniesCard = ({ company }) => {
 							? company.fk_user_company.map(admin =>
 									admin.isAdmin
 										? `Admin: ${admin.first_name} ${admin.last_name}`
-										: 'Admin: No assigned Administrator.'
+										: null
 							  )
-							: null}
+							: 'Admin: No assigned Administrator.'}
 					</p>
 					<p>{company.phone}</p>
 					<p>{company.website}</p>
@@ -40,7 +65,7 @@ const CompaniesCard = ({ company }) => {
 				<RightSection>
 					<TokenSection>
 						<p>
-							<span>Credit amount:</span>{' '}
+							<span>Token amount:</span>{' '}
 							{company.available_credit.total_available
 								? company.available_credit.total_available
 								: 0}
@@ -48,8 +73,15 @@ const CompaniesCard = ({ company }) => {
 					</TokenSection>
 					<AllocateTokenSection>
 						<span>Allocate credits:</span>
-						<input type='number' />
-						<Button save>save</Button>
+						<input
+							onChange={updateField}
+							type='number'
+							name='tokenInput'
+							min='0'
+						/>
+						<Button onClick={handleAllocateTokenCompany} save>
+							save
+						</Button>
 					</AllocateTokenSection>
 				</RightSection>
 			</InfoContainer>

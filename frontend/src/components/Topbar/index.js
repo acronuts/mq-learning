@@ -46,15 +46,18 @@ const TopBar = ({ user }) => {
 				</TopBarLeft>
 				<TopBarCenter>
 					<TokensValidText>
-						<span>
-							{user.isAdmin || user.is_staff
-								? 'Credits to distribute:'
-								: 'Credits remaining:'}{' '}
-							{user.available_credit
-								? user.available_credit.total_available
+						<span className={user.is_staff ? 'hide' : null}>
+							{user.available_credit && user.company.available_credit
+								? user.isAdmin
+									? `Company credits to distribute: ${user.company.available_credit.total_available}`
+									: user.is_staff
+									? null
+									: `Credits remaining: ${user.available_credit.total_available}`
 								: null}
 						</span>
-						<span>Valid Until: 31 / 12 / 2020</span>
+						<span className={user.is_staff ? 'hide' : null}>
+							Valid Until: 31 / 12 / 2020
+						</span>
 					</TokensValidText>
 				</TopBarCenter>
 				<TopBarRight>

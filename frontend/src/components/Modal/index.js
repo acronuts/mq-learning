@@ -4,7 +4,7 @@ import { ModalExtContainer, ModalIntContainer, ContentSection } from './styled';
 import { Button } from '../../style/Button';
 import ReservationAction from '../../store/actions/reservationAction';
 
-const Modal = ({ handleClose, workshop, user }) => {
+const Modal = ({ handleClose, workshop, user, attendees }) => {
 	const dispatch = useDispatch();
 
 	const [currentStage, setCurrentStage] = useState(0);
@@ -28,24 +28,6 @@ const Modal = ({ handleClose, workshop, user }) => {
 		return () => clearTimeout(timer);
 	}, [currentStage, handleClose]);
 
-	// const checkTokens = () => {
-	// 	if (user.available_credits) {
-	// 		if (user.available_credits.total_available >= workshop.cost) {
-	// 			return (
-	// 				<p>
-	// 					Thanks for registering, {user.first_name}! You are all set to attend
-	// 					the workshop!
-	// 				</p>
-	// 			);
-	// 		} else {
-	// 			return (
-	// 				<p>You don't own enough credits. Please contact administrator.</p>
-	// 			);
-	// 		}
-	// 	}
-	// 	return user.available_credits;
-	// };
-
 	return (
 		<Fragment>
 			<ModalExtContainer>
@@ -53,8 +35,8 @@ const Modal = ({ handleClose, workshop, user }) => {
 					<ContentSection>
 						{currentStage === 0 ? (
 							<Fragment>
-								{workshop.attendees ? (
-									workshop.attendees.includes(user.id) ? (
+								{attendees() ? (
+									attendees().includes(user.id) ? (
 										<p>
 											Are you sure you want to unregister? {workshop.cost}{' '}
 											credit(s) will be credited back to you account.
@@ -72,12 +54,12 @@ const Modal = ({ handleClose, workshop, user }) => {
 						{currentStage === 1 ? (
 							<Fragment>
 								{user.available_credit.total_available < workshop.cost &&
-								!workshop.attendees.includes(user.id) ? (
+								!attendees().includes(user.id) ? (
 									<p>
 										Sorry, you don't have enough tokens. Please, contact
 										administrator.
 									</p>
-								) : workshop.attendees.includes(user.id) ? (
+								) : attendees().includes(user.id) ? (
 									<p>You have successfully unregistered from the workshop!</p>
 								) : (
 									<p>

@@ -11,6 +11,8 @@ const WorkshopPage = ({ singleWorkshop, user }) => {
 	const history = useHistory();
 	const [showModal, setShowModal] = useState(false);
 
+	console.log(singleWorkshop.location ? singleWorkshop.location : null);
+
 	const openModal = e => {
 		setShowModal(true);
 	};
@@ -24,6 +26,15 @@ const WorkshopPage = ({ singleWorkshop, user }) => {
 		return moment(date).format('LLLL'); //localized timezone date and time format
 	};
 
+	const attendees = () => {
+		if (singleWorkshop.attendees) {
+			const attendeesArray = singleWorkshop.attendees.map(
+				attendee => attendee.id
+			);
+			return attendeesArray;
+		}
+	};
+
 	return (
 		<Container workshop>
 			<TopBarWrapper>
@@ -32,8 +43,26 @@ const WorkshopPage = ({ singleWorkshop, user }) => {
 				</div>
 				<div className='workshop-info-container'>
 					<h1>{singleWorkshop.title}</h1>
-					<p>{dateToFormat(singleWorkshop.date_start)}</p>
-					<p>{singleWorkshop.location}</p>
+					<p>
+						<i
+							className={
+								singleWorkshop.date_start ? 'far fa-calendar-alt' : null
+							}
+						></i>
+						{dateToFormat(singleWorkshop.date_start)}
+					</p>
+					<p>
+						<i
+							className={
+								singleWorkshop.location
+									? singleWorkshop.location.toLowerCase === 'online'
+										? 'fas fa-laptop'
+										: 'fas fa-map-marker-alt'
+									: null
+							}
+						></i>
+						{singleWorkshop.location}
+					</p>
 					<p>{singleWorkshop.subtitle}</p>
 					<p>Cost: {singleWorkshop.cost} credits</p>
 				</div>
@@ -50,12 +79,12 @@ const WorkshopPage = ({ singleWorkshop, user }) => {
 					<p>{singleWorkshop.description}</p>
 				</div>
 				<div className='action-btns-container'>
-					<Button backBtn onClick={() => history.push('/mainpage')}>
+					<Button backBtn onClick={() => history.push('/mainpage/')}>
 						Back
 					</Button>
 					<Button backBtn onClick={openModal}>
-						{singleWorkshop.attendees
-							? singleWorkshop.attendees.includes(user.id)
+						{attendees()
+							? attendees().includes(user.id)
 								? 'unregister'
 								: 'register'
 							: null}
@@ -65,6 +94,7 @@ const WorkshopPage = ({ singleWorkshop, user }) => {
 							handleClose={hideModal}
 							workshop={singleWorkshop}
 							user={user}
+							attendees={attendees}
 						/>
 					) : null}
 				</div>

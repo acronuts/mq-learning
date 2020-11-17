@@ -14,7 +14,7 @@ class Token(models.Model):
         ('used', 'Used'),
     ]
     token_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    created = models.DateField(auto_now=True)
+    created = models.DateField(auto_now_add=True)
     companyToken = models.ForeignKey(
         to=CompanyAccount,
         related_name='fk_companyAccount_token',
@@ -32,7 +32,7 @@ class Token(models.Model):
     status = models.CharField(max_length=5, choices=token_status, default='valid')
 
     def __str__(self):
-        return f'{self.token_id} - {self.companyToken.company.name}'
+        return f'{self.token_id}'
 
     @property
     def expired(self):

@@ -40,6 +40,7 @@ export const NavbarDiV = styled.div`
 export const SectionWorkshop = styled.div`
 	min-height: 40rem;
 	display: flex;
+	align-content: flex-start;
 	gap: 3.8rem;
 	flex-wrap: wrap;
 	width: 100%;

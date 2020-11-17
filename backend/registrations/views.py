@@ -54,7 +54,7 @@ class RegistrationView(GenericAPIView):
         email.mixed_subtype = 'related'
 
         for f in ['mq-logo.jpg']:
-            fp = open(os.path.join(os.path.dirname('/opt/project/frontend/src/assets/images/'), f), 'rb')
+            fp = open(os.path.join(os.path.dirname('/backend/templates/'), f), 'rb')
             email_img = MIMEImage(fp.read())
             fp.close()
             email_img.add_header('Content-ID', '<{}>'.format(f))
@@ -114,7 +114,7 @@ class PasswordResetView(GenericAPIView):
         email.mixed_subtype = 'related'
 
         for f in ['mq-logo.jpg']:
-            fp = open(os.path.join(os.path.dirname('/opt/project/frontend/src/assets/images/'), f), 'rb')
+            fp = open(os.path.join(os.path.dirname('/backend/templates/'), f), 'rb')
             email_img = MIMEImage(fp.read())
             fp.close()
             email_img.add_header('Content-ID', '<{}>'.format(f))
