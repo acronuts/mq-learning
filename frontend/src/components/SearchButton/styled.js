@@ -6,8 +6,11 @@ import { colors } from '../../style/theme';
 export const SearchBar=styled.input`
     height: 2.55rem;
     width: 15rem; 
-    border: 1px; 
+    border:1px solid rgba(0, 0, 0, .85); 
     border-radius: 0.3rem;
+	font-family: inherit; 
+
+
 
 `; 
 

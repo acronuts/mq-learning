@@ -57,9 +57,10 @@ ${props =>
 		css`
 			gap: 1rem; 
 			min-height: 4rem;
-			padding: 0rem;
+			padding-top: 0rem;
 			display:flex;
 			background: red; 
+			align-items: left;
 			width: 20rem;
 			height: auto;
 			margin: 0.5rem 0;

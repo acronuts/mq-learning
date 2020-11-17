@@ -12,6 +12,7 @@ import {
 import avatar from '../../assets/images/avatar-placeholder.png';
 import { Button } from '../../style/Button';
 import allocateTokenUserAction from '../../store/actions/allocateTokenUserAction';
+import Action from '../../store/actions/searchAction'
 
 const EmployeeCard = ({ employee }) => {
 	const dispatch = useDispatch();

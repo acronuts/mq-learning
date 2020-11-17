@@ -5,6 +5,7 @@ import {Button} from '../../style/Button'
 import baseUrl from '../../store/baseUrl'
 import searchAction from '../../store/actions/searchAction';
 import {useDispatch, useSelector} from 'react-redux'
+import EmployeeCard from '../EmployeeCard'
 
 
 
@@ -29,7 +30,7 @@ const SearchBarComponent=()=>{
     useEffect(() => {
         
     },  ); 
-  
+    
 
    
     return (
@@ -43,6 +44,7 @@ const SearchBarComponent=()=>{
                     value={search}
                     onChange={ e => setSearch(e.target.value)} 
                     placeholder="Search"
+                     
                 />
             
             </form> 
@@ -50,7 +52,7 @@ const SearchBarComponent=()=>{
         <ResultsDiv>
             {/*results.map(result =>(<img key ={result.id} alt='ABC logo' src={result.logo}/>))*/} 
             {search.length > 0 && results.map(result =>(<ul key ={result.id}> 
-                <p> {result.first_name}</p> 
+                 { EmployeeCard()}
             </ul>))}
             
     
