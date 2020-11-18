@@ -56,6 +56,7 @@ export const ContentSection = styled.section`
 	}
 
 	.hide {
-		display: none;
+		display: none !important;
+		/* background: red; */
 	}
 `;

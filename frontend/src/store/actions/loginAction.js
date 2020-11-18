@@ -8,7 +8,6 @@ export const loginAction = user => ({
 });
 
 export const login = (data, history) => async (dispatch, getState) => {
-    console.log('data ', data);
     const headers = new Headers({
         'Content-Type': 'application/json'
     });

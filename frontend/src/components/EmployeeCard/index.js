@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import {
 	CardWrapper,
 	AvatarContainer,
@@ -8,15 +9,30 @@ import {
 	TokenSection,
 	AllocateTokenSection,
 } from './styled';
-import avatar from '../../assets/images/avatar-placeholder.png';
 import { Button } from '../../style/Button';
 import ModalTokensUser from '../Modal/ModalTokensUser';
+import allocateTokenUserAction from '../../store/actions/allocateTokenUserAction';
 
 const EmployeeCard = ({ employee }) => {
-	console.log(employee);
-
-	const [tokenInput, setTokenInput] = useState('');
+	const dispatch = useDispatch();
+	const [tokenInput, setTokenInput] = useState(0);
 	const [showModal, setShowModal] = useState(false);
+	const [currentStage, setCurrentStage] = useState(0);
+
+	const modalRef = useRef();
+
+	const handleAllocateTokenUser = e => {
+		e.preventDefault();
+		setCurrentStage(currentStage + 1);
+		const getData = () => {
+			dispatch(allocateTokenUserAction(employee.id, tokenInput));
+		};
+		getData();
+		setTimeout(() => {
+			hideModal();
+			setCurrentStage(0);
+		}, 2000);
+	};
 
 	const openModal = e => {
 		setShowModal(true);
@@ -27,25 +43,17 @@ const EmployeeCard = ({ employee }) => {
 	};
 
 	const updateField = e => {
-		setTokenInput({
-			...tokenInput,
-			[e.currentTarget.name]: e.currentTarget.value,
-		});
+		setTokenInput(e.currentTarget.value);
 	};
-
-	const fullName = `${employee.first_name} ${employee.last_name}`;
 
 	return (
 		<CardWrapper>
-			<AvatarContainer>
-				<img
-					src={employee.avatar ? employee.avatar : avatar}
-					alt='employee-avatar'
-				/>
-			</AvatarContainer>
+			<AvatarContainer employee={employee} />
 			<InfoContainer>
 				<LeftSection>
-					<p>{fullName}</p>
+					<p>
+						{employee.first_name} {employee.last_name}
+					</p>
 					<p>{employee.email}</p>
 					<p>{employee.company ? employee.company.name : null}</p>
 					<p>
@@ -85,6 +93,9 @@ const EmployeeCard = ({ employee }) => {
 						handleClose={hideModal}
 						employee={employee}
 						tokenInput={tokenInput}
+						modalRef={modalRef}
+						handleAllocateTokenUser={handleAllocateTokenUser}
+						currentStage={currentStage}
 					/>
 				) : null}
 			</InfoContainer>

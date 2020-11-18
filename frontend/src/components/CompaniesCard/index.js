@@ -16,9 +16,23 @@ import ModalTokensCompany from '../Modal/ModalTokensCompany';
 
 const CompaniesCard = ({ company }) => {
 	const dispatch = useDispatch();
-
-	const [tokenInput, setTokenInput] = useState('');
+	const [tokenInput, setTokenInput] = useState(0);
 	const [showModal, setShowModal] = useState(false);
+	const [currentStage, setCurrentStage] = useState(0);
+
+	const handleAllocateTokenCompany = e => {
+		e.preventDefault();
+		setCurrentStage(currentStage + 1);
+		const getData = () => {
+			dispatch(allocateTokenCompanyAction(company.id, tokenInput));
+		};
+		getData();
+		setTimeout(() => {
+			hideModal();
+			setCurrentStage(0);
+			setTokenInput(0);
+		}, 2000);
+	};
 
 	const openModal = e => {
 		setShowModal(true);
@@ -29,10 +43,7 @@ const CompaniesCard = ({ company }) => {
 	};
 
 	const updateField = e => {
-		setTokenInput({
-			...tokenInput,
-			[e.currentTarget.name]: e.currentTarget.value,
-		});
+		setTokenInput(e.currentTarget.value);
 	};
 
 	return (
@@ -92,6 +103,8 @@ const CompaniesCard = ({ company }) => {
 						company={company}
 						handleClose={hideModal}
 						tokenInput={tokenInput}
+						handleAllocateTokenCompany={handleAllocateTokenCompany}
+						currentStage={currentStage}
 					/>
 				) : null}
 			</InfoContainer>

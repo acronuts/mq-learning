@@ -1,19 +1,12 @@
 import baseUrl from '../../store/baseUrl';
 
-export const specificWorkshopAction = props => async (
-	dispatch,
-	getState,
-	token
-) => {
-	const userToken = token ? token : getState().user.token;
-	console.log(getState().user);
-
-	const url = `${baseUrl}/backend/api/workshops/${props}`;
+export const specificWorkshopAction = async (workshopId, token) => {
+	const url = `${baseUrl}/backend/api/workshops/${workshopId}`;
 	const config = {
 		method: 'GET',
 		headers: new Headers({
 			Accept: 'application/json',
-			Authorization: `Bearer ${userToken}`,
+			Authorization: `Bearer ${token}`,
 		}),
 	};
 	const response = await fetch(url, config);

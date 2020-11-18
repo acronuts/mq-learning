@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TopBar from '../components/Topbar';
 import Footer from '../components/Footer';
@@ -14,10 +14,6 @@ const MainPage = () => {
 	const companies = useSelector(state => state.company.company);
 	const workshops = useSelector(state => state.workshop.workshop);
 
-	console.log('user', user);
-	console.log('company', companies);
-	console.log('workshop', workshops);
-
 	useEffect(() => {
 		const getData = () => {
 			dispatch(workshopAction());
@@ -30,7 +26,7 @@ const MainPage = () => {
 		<Fragment>
 			{user ? <TopBar user={user} /> : null}
 			<Container>
-				{workshops && companies ? (
+				{workshops && companies && user ? (
 					<NavigateDashboard
 						workshops={workshops}
 						companies={companies}

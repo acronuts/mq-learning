@@ -1,4 +1,5 @@
 import baseUrl from '../baseUrl';
+import companiesAction from '../actions/companiesAction';
 
 export const allocateTokenCompanyAction = (
 	companyId,
@@ -20,8 +21,8 @@ export const allocateTokenCompanyAction = (
 		body: credits,
 	};
 	const response = await fetch(url, config);
-	const data = await response.json();
-	return data;
+	await response.json();
+	dispatch(companiesAction());
 };
 
 export default allocateTokenCompanyAction;

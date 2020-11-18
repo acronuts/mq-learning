@@ -33,8 +33,9 @@ export const TopBarWrapper = styled.section`
 		}
 		p {
 			width: 70%;
-			margin: 0.2rem 0;
+			margin: 0.4rem 0;
 			font-size: ${fontSizes.normal};
+			color: rgba(0, 0, 0, 0.55);
 		}
 		p:nth-child(5) {
 			text-align: right;
@@ -46,6 +47,7 @@ export const TopBarWrapper = styled.section`
 			font-size: ${fontSizes.medium};
 		}
 		i {
+			color: #a95edb;
 			margin-right: 0.5rem;
 		}
 	}

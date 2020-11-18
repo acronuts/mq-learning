@@ -1,13 +1,12 @@
-import { COMPANY_INFO } from '../actionTypes';
 import baseUrl from '../baseUrl';
+import { USER_UPDATE } from '../actionTypes';
 
-export const companiesAction = token => async (dispatch, getState) => {
-	// const token = getState().loginReducer.token;
+export const userAction = token => async (dispatch, getState) => {
 	const userToken = token ? token : getState().user.token;
 
-	const url = `${baseUrl}/backend/api/companies/`;
+	const url = `${baseUrl}/backend/api/users/me/`;
 	const config = {
-		method: 'GET',
+		method: 'PATCH',
 		headers: new Headers({
 			Accept: 'application/json',
 			Authorization: `Bearer ${userToken}`,
@@ -16,9 +15,10 @@ export const companiesAction = token => async (dispatch, getState) => {
 	const response = await fetch(url, config);
 	const data = await response.json();
 	dispatch({
-		type: COMPANY_INFO,
-		payload: data,
+		type: USER_UPDATE,
+		payload: {
+			user: data,
+			token: userToken,
+		},
 	});
 };
-
-export default companiesAction;

@@ -1,9 +1,9 @@
 import { WORKSHOP_INFO } from '../actionTypes';
 import baseUrl from '../baseUrl';
 
-export const workshopAction = token => async (dispatch, getState) => {
+export const workshopAction = (token = null) => async (dispatch, getState) => {
 	const userToken = token ? token : getState().user.token;
-	
+
 	const url = `${baseUrl}/backend/api/workshops/`;
 	const config = {
 		method: 'GET',

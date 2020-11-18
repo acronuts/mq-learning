@@ -1,9 +1,11 @@
 import baseUrl from '../baseUrl';
+import userAction from '../actions/userAction';
 
-export const allocateTokenUserAction = (employeeId, tokenAmount, token) => async (
-	dispatch,
-	getState
-) => {
+export const allocateTokenUserAction = (
+	employeeId,
+	tokenAmount,
+	token
+) => async (dispatch, getState) => {
 	const userToken = token ? token : getState().user.token;
 
 	const url = `${baseUrl}/backend/api/accounts/user/${employeeId}/`;
@@ -19,8 +21,8 @@ export const allocateTokenUserAction = (employeeId, tokenAmount, token) => async
 		body: credits,
 	};
 	const response = await fetch(url, config);
-	const data = await response.json();
-	return data;
+	await response.json();
+	dispatch(userAction());
 };
 
 export default allocateTokenUserAction;

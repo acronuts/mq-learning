@@ -8,8 +8,12 @@ const UserProfile = () => {
 
 	return (
 		<Fragment>
-			<UserProfilePage user={user} />
-			<Footer />
+			{user ? (
+				<Fragment>
+					<UserProfilePage user={user} />
+					<Footer />
+				</Fragment>
+			) : null}
 		</Fragment>
 	);
 };

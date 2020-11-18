@@ -55,6 +55,7 @@ export const ContentWrapper = styled.div`
 		i {
 			font-size: ${fontSizes.normal};
 			margin-right: 0.7rem;
+			color: #a95edb;
 		}
 
 		.description {
@@ -83,9 +84,9 @@ export const ReserveBtnWrapper = styled.div`
 	border-top: 1px solid rgba(0, 0, 0, 0.25);
 	position: relative;
 	p {
-		padding-left: .5rem;
+		padding-left: 0.5rem;
 		width: 70%;
 		font-size: ${fontSizes.small};
-		color: rgba(0, 0, 0, 0.45);
+		color: rgba(0, 0, 0, 0.65);
 	}
 `;

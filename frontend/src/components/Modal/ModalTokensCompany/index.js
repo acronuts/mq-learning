@@ -1,31 +1,23 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { Fragment, useEffect } from 'react';
 import {
 	ModalExtContainer,
 	ModalIntContainer,
 	ContentSection,
 } from '../styled';
 import { Button } from '../../../style/Button';
-import allocateTokenCompanyAction from '../../../store/actions/allocateTokenCompanyAction';
 
-const ModalTokensCompany = ({ handleClose, company, tokenInput }) => {
-	const dispatch = useDispatch();
-	const [currentStage, setCurrentStage] = useState(0);
-
-	const handleAllocateTokenCompany = e => {
-		e.preventDefault();
-		setCurrentStage(currentStage + 1);
-		const getData = () => {
-			dispatch(allocateTokenCompanyAction(company.id, tokenInput.tokenInput));
-		};
-		getData();
-	};
+const ModalTokensCompany = ({
+	handleClose,
+	company,
+	tokenInput,
+	currentStage,
+	handleAllocateTokenCompany,
+}) => {
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			if (currentStage === 1) {
 				handleClose();
-				window.location.reload();
 			}
 		}, 2000);
 		return () => clearTimeout(timer);
@@ -39,7 +31,7 @@ const ModalTokensCompany = ({ handleClose, company, tokenInput }) => {
 						{currentStage === 0 ? (
 							<Fragment>
 								<p style={{ color: 'black' }}>
-									Are you sure you want to credit {tokenInput.tokenInput}{' '}
+									Are you sure you want to credit {tokenInput}{' '}
 									token(s) to {company.name}?
 								</p>
 							</Fragment>
@@ -48,7 +40,7 @@ const ModalTokensCompany = ({ handleClose, company, tokenInput }) => {
 						{currentStage === 1 ? (
 							<Fragment>
 								<p>
-									You have credited {tokenInput.tokenInput} token(s) to{' '}
+									You have credited {tokenInput} token(s) to{' '}
 									{company.name}
 								</p>
 							</Fragment>

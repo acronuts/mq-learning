@@ -1,32 +1,11 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { Fragment } from 'react';
 import WorkshopPage from '../components/WorkshopPage';
 import Footer from '../components/Footer';
-import specificWorkshopAction from '../store/actions/specificWorkshopAction';
 
-const Workshop = props => {
-	const dispatch = useDispatch();
-	const user = useSelector(state => state.user.user);
-	const [singleWorkshop, setSingleWorkshop] = useState([]);
-
-	// Get specific workshop
-	useEffect(() => {
-		const getData = async () => {
-			const data = await dispatch(
-				specificWorkshopAction(props.match.params.workshopId)
-			);
-			setSingleWorkshop(data);
-		};
-		getData();
-	}, [props.match.params.workshopId, dispatch]);
-
+const Workshop = () => {
 	return (
 		<Fragment>
-			<WorkshopPage
-				singleWorkshop={singleWorkshop}
-				key={singleWorkshop.id}
-				user={user}
-			/>
+			<WorkshopPage />
 			<Footer />
 		</Fragment>
 	);

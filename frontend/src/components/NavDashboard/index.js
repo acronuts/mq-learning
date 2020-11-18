@@ -96,7 +96,7 @@ const NavigateDashboard = ({ workshops, user, companies }) => {
 									<WorkshopCard Zoom workshop={workshop} key={workshop.id} />
 								))
 							) : (
-								<Spinner style={message}>loading..</Spinner>
+								<Spinner style={message} />
 							)}
 						</Fragment>
 					) : null}
@@ -180,6 +180,7 @@ const NavigateDashboard = ({ workshops, user, companies }) => {
 };
 
 const message = {
+	marginTop: '10%',
 	marginLeft: '40%',
 	fontWeight: '400',
 };

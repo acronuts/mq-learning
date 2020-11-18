@@ -4,3 +4,4 @@ export const USER_REGISTRATION = 'USER_REGISTRATION';
 export const USER_INFO = 'USER_INFO';
 export const COMPANY_INFO = 'COMPANY_INFO';
 export const WORKSHOP_INFO = 'WORKSHOP_INFO';
+export const USER_UPDATE = 'USER_UPDATE';

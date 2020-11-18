@@ -9,10 +9,7 @@ import { useHistory } from 'react-router-dom';
 import { Button } from '../../style/Button';
 import moment from 'moment'
 
-const WorkshopCard = ({ workshop, user }) => {
-	//todo remove seats available from card if attended workshop
-	// const currentTime = new Date().dateNow
-	// console.log(currentTime);
+const WorkshopCard = ({ workshop }) => {
 
 	const history = useHistory();
 
@@ -20,20 +17,6 @@ const WorkshopCard = ({ workshop, user }) => {
 		// return moment(date).format('D MMM YYYY, h:mm A');
 		return moment(date).format('LLL'); //localized timezone date and time format
 	};
-
-	// const dateCheck = date => {
-	// 	// return moment(date).format('D MMM YYYY');
-	// 	return moment(date).format('LL'); //localized timezone date format
-	// };
-
-	// const dateToTime = date => {
-	// 	// return moment(date).format('h:mm A');
-	// 	return moment(date).format('LT'); //localized timezone time format
-	// };
-
-	// const dateToDay = (date) => {
-	// 	return moment(date).format('dddd');
-	// }
 
 	return (
 		<>

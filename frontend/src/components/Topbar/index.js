@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Container } from '../../style/Container';
 import mqlogo from '../../assets/images/mq-logo.jpg';
@@ -21,7 +21,6 @@ import { logoutAction } from '../../store/actions/logoutAction';
 import { useDispatch } from 'react-redux';
 
 const TopBar = ({ user }) => {
-	
 	const fullName = user ? `${user.first_name} ${user.last_name}` : 'loading..';
 
 	const history = useHistory();
@@ -65,6 +64,19 @@ const TopBar = ({ user }) => {
 					) : (
 						'loading...'
 					)}
+					<TokensValidText>
+						{user.isAdmin ? (
+							<Fragment>
+								<p>
+									Personal tokens remaining:{' '}
+									{user.available_credit
+										? user.available_credit.total_available
+										: null}
+								</p>
+								<span>Valid Until: 31 / 12 / 2020</span>
+							</Fragment>
+						) : null}
+					</TokensValidText>
 				</TopBarCenter>
 				<TopBarRight>
 					<AvatarContainer user={user} />
@@ -75,9 +87,9 @@ const TopBar = ({ user }) => {
 						</CompanyText>
 						<ViewProfileBtnWrapper>
 							<Link to='/user-profile/'>
-								<ViewProfileBtn>edit profile</ViewProfileBtn>
+								<ViewProfileBtn>Profile</ViewProfileBtn>
 							</Link>
-							<ViewProfileBtn onClick={logOutHandler}>logout</ViewProfileBtn>
+							<ViewProfileBtn onClick={logOutHandler}>Logout</ViewProfileBtn>
 						</ViewProfileBtnWrapper>
 					</UserProfileContainer>
 				</TopBarRight>

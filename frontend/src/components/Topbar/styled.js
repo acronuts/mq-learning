@@ -12,21 +12,22 @@ export const TopBarHeader = styled.div`
 `;
 
 export const TopBarLeft = styled.div`
-	width: 25%;
+	width: 20%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 `;
 
 export const TopBarCenter = styled.div`
-	width: 45%;
+	width: 55%;
+	height: 100%;
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 `;
 
 export const TopBarRight = styled.div`
-	width: 30%;
+	width: 25%;
 	display: flex;
 	flex-direction: row-reverse;
 	justify-content: flex-start;
@@ -71,17 +72,10 @@ export const AvatarContainer = styled.div`
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
-	width: 5rem;
+	width: 7rem;
 	height: 5rem;
 	border-radius: 50%;
 `;
-
-// export const Avatar = styled.img`
-// 	width: 4rem;
-// 	height: 4rem;
-// 	border-radius: 50%;
-// 	vertical-align: middle;
-// `;
 
 export const UserProfileContainer = styled.div`
 	display: flex;
@@ -101,7 +95,7 @@ export const UserWelcome = styled.p`
 export const ViewProfileBtnWrapper = styled.div`
 	display: flex;
 	justify-content: center;
-	margin-top: .5rem;
+	margin-top: 0.5rem;
 `;
 
 export const ViewProfileBtn = styled.button`
@@ -121,11 +115,15 @@ export const ViewProfileBtn = styled.button`
 `;
 
 export const TokensValidText = styled.div`
+	width: 100%;
 	font-size: ${fontSizes.normal};
-	margin-left: 3rem;
-	align-self: center;
+	justify-self: flex-end;
 	display: flex;
 	flex-direction: column;
+	text-align: right;
+	:nth-child(2) {
+		padding-right: 2rem;
+	}
 
 	.hide {
 		display: none;

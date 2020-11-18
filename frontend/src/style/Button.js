@@ -81,7 +81,7 @@ export const Button = styled.button`
 			position: absolute;
 			bottom: 0.5rem;
 			right: 0.5rem;
-			letter-spacing: .05rem;
+			letter-spacing: 0.05rem;
 
 			:hover {
 				background: #d59bfa;
@@ -128,7 +128,8 @@ export const Button = styled.button`
 			color: ${colors.white};
 			right: 1rem;
 			:hover {
-				background: none;
+				background: #fff;
+				color: ${colors.dimGray};
 			}
 		`}
 `;

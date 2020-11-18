@@ -1,1 +1,12 @@
-Hello {{first_name}}
+Hello {{first_name}},
+
+Thank you for registering to our event!
+
+We're looking forward seeing you there.
+
+Here are the details:
+{{title}}
+{{start_date}} - {{end_date}}
+{{location}}
+
+Learn more about this event: {{link}}

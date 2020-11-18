@@ -1,7 +1,7 @@
 import baseUrl from '../baseUrl';
 import { USER_INFO } from '../actionTypes';
 
-export const userAction = token => async (dispatch, getState) => {
+export const userAction = (token = null) => async (dispatch, getState) => {
 	const userToken = token ? token : getState().user.token;
 
 	const url = `${baseUrl}/backend/api/users/me/`;

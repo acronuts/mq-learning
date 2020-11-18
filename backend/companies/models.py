@@ -8,6 +8,7 @@ def user_directory_path(instance, filename):
 
 class Company(models.Model):
     name = models.CharField(max_length=100, unique=True)
+    about = models.CharField(max_length=255, blank=True)
     logo = models.ImageField(upload_to=user_directory_path, blank=True)
     phone = models.CharField(max_length=15, blank=True)
     website = models.CharField(max_length=50, blank=True)
