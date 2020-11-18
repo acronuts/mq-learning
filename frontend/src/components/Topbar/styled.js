@@ -101,7 +101,7 @@ export const UserWelcome = styled.p`
 export const ViewProfileBtnWrapper = styled.div`
 	display: flex;
 	justify-content: center;
-	margin-top: 1rem;
+	margin-top: .5rem;
 `;
 
 export const ViewProfileBtn = styled.button`

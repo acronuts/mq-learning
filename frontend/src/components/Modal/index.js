@@ -12,9 +12,10 @@ const Modal = ({ handleClose, workshop, user, attendees }) => {
 	const handleReservation = e => {
 		e.preventDefault();
 		setCurrentStage(currentStage + 1);
-		const getData = async () => {
-			return await dispatch(ReservationAction(workshop.id));
+		const getData = () => {
+			dispatch(ReservationAction(workshop.id));
 		};
+		console.log(currentStage);
 		getData();
 	};
 

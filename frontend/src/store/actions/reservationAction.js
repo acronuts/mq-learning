@@ -1,15 +1,19 @@
 import baseUrl from '../../store/baseUrl';
 
-export const ReservationAction = workshopId => async (dispatch, getState) => {
+export const ReservationAction = (workshopId, token) => async (
+	dispatch,
+	getState
+) => {
 	// const token = getState().loginReducer.token;
-	const token = getState().loginReducer.token || localStorage.getItem('token');
+	const userToken = token ? token : getState().user.token;
+	console.log(getState().user);
 
 	const url = `${baseUrl}/backend/api/workshops/reserve/${workshopId}/`;
 	const config = {
 		method: 'POST',
 		headers: new Headers({
 			'Content-type': 'application/json',
-			Authorization: `Bearer ${token}`,
+			Authorization: `Bearer ${userToken}`,
 		}),
 	};
 	const response = await fetch(url, config);

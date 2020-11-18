@@ -7,7 +7,9 @@ const Footer = () => {
 		<Container>
 			<FooterWrapper>
 				<LeftSide>
-					<p>MQ Learning &copy; 2020</p>
+					<p>
+						MQ Learning <span>&reg;</span> 2020
+					</p>
 				</LeftSide>
 				<RightSide>
 					<a

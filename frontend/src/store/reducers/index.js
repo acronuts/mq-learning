@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
-import { loginReducer } from './loginReducer';
+import companyReducer from './companyReducer';
 import { regValReducer } from './regValReducer';
-import { userReducer } from './userReducer';
+import userReducer from './userReducer';
+import workshopReducer from './workshopReducer';
 
 const reducer = combineReducers({
-    loginReducer,
-    regValReducer,
-    user: userReducer
+	regValReducer,
+	user: userReducer,
+	company: companyReducer,
+	workshop: workshopReducer,
 });
 
-export default reducer
+export default reducer;

@@ -21,7 +21,9 @@ import { logoutAction } from '../../store/actions/logoutAction';
 import { useDispatch } from 'react-redux';
 
 const TopBar = ({ user }) => {
-	const fullName = `${user.first_name} ${user.last_name}`;
+	
+	const fullName = user ? `${user.first_name} ${user.last_name}` : 'loading..';
+
 	const history = useHistory();
 	const dispatch = useDispatch();
 
@@ -45,20 +47,24 @@ const TopBar = ({ user }) => {
 					</MQLogoWrapper>
 				</TopBarLeft>
 				<TopBarCenter>
-					<TokensValidText>
-						<span className={user.is_staff ? 'hide' : null}>
-							{user.available_credit && user.company.available_credit
-								? user.isAdmin
-									? `Company credits to distribute: ${user.company.available_credit.total_available}`
-									: user.is_staff
-									? null
-									: `Credits remaining: ${user.available_credit.total_available}`
-								: null}
-						</span>
-						<span className={user.is_staff ? 'hide' : null}>
-							Valid Until: 31 / 12 / 2020
-						</span>
-					</TokensValidText>
+					{user ? (
+						<TokensValidText>
+							<span className={user.is_staff ? 'hide' : null}>
+								{user.available_credit && user.company.available_credit
+									? user.isAdmin
+										? `Company tokens to distribute: ${user.company.available_credit.total_available}`
+										: user.is_staff
+										? null
+										: `Tokens remaining: ${user.available_credit.total_available}`
+									: null}
+							</span>
+							<span className={user.is_staff ? 'hide' : null}>
+								Valid Until: 31 / 12 / 2020
+							</span>
+						</TokensValidText>
+					) : (
+						'loading...'
+					)}
 				</TopBarCenter>
 				<TopBarRight>
 					<AvatarContainer user={user} />

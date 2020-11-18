@@ -12,11 +12,21 @@ import avatar from '../../assets/images/avatar-placeholder.png';
 import { Button } from '../../style/Button';
 import { LogoContainer } from '../CompanyArea/styled';
 import allocateTokenCompanyAction from '../../store/actions/allocateTokenCompanyAction';
+import ModalTokensCompany from '../Modal/ModalTokensCompany';
 
 const CompaniesCard = ({ company }) => {
 	const dispatch = useDispatch();
 
 	const [tokenInput, setTokenInput] = useState('');
+	const [showModal, setShowModal] = useState(false);
+
+	const openModal = e => {
+		setShowModal(true);
+	};
+
+	const hideModal = e => {
+		setShowModal(false);
+	};
 
 	const updateField = e => {
 		setTokenInput({
@@ -24,18 +34,6 @@ const CompaniesCard = ({ company }) => {
 			[e.currentTarget.name]: e.currentTarget.value,
 		});
 	};
-
-	const handleAllocateTokenCompany = e => {
-		e.preventDefault();
-		const getData = async () => {
-			return await dispatch(
-				allocateTokenCompanyAction(company.id, tokenInput.tokenInput)
-			);
-		};
-		getData();
-	};
-
-	console.log(company.id);
 
 	return (
 		// Components come from EmployeeCard
@@ -64,26 +62,38 @@ const CompaniesCard = ({ company }) => {
 				</LeftSection>
 				<RightSection>
 					<TokenSection>
-						<p>
-							<span>Token amount:</span>{' '}
-							{company.available_credit.total_available
-								? company.available_credit.total_available
-								: 0}
-						</p>
+						{company.available_credit ? (
+							<p>
+								<span>Tokens available:</span>{' '}
+								{company.available_credit.total_available
+									? company.available_credit.total_available
+									: 0}{' '}
+								tokens
+							</p>
+						) : (
+							'loading...'
+						)}
 					</TokenSection>
 					<AllocateTokenSection>
-						<span>Allocate credits:</span>
+						<span>Allocate tokens:</span>
 						<input
 							onChange={updateField}
 							type='number'
 							name='tokenInput'
 							min='0'
 						/>
-						<Button onClick={handleAllocateTokenCompany} save>
+						<Button onClick={openModal} save>
 							save
 						</Button>
 					</AllocateTokenSection>
 				</RightSection>
+				{showModal ? (
+					<ModalTokensCompany
+						company={company}
+						handleClose={hideModal}
+						tokenInput={tokenInput}
+					/>
+				) : null}
 			</InfoContainer>
 		</CardWrapper>
 	);

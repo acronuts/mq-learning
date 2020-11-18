@@ -1,20 +1,25 @@
+import { COMPANY_INFO } from '../actionTypes';
 import baseUrl from '../baseUrl';
 
-export const companiesAction = () => async (dispatch, getState) => {
+export const companiesAction = token => async (dispatch, getState) => {
 	// const token = getState().loginReducer.token;
-	const token = getState().loginReducer.token || localStorage.getItem('token');
+	const userToken = token ? token : getState().user.token;
+	console.log(getState().user);
 
 	const url = `${baseUrl}/backend/api/companies/`;
 	const config = {
 		method: 'GET',
 		headers: new Headers({
 			Accept: 'application/json',
-			Authorization: `Bearer ${token}`,
+			Authorization: `Bearer ${userToken}`,
 		}),
 	};
 	const response = await fetch(url, config);
 	const data = await response.json();
-	return data;
+	dispatch({
+		type: COMPANY_INFO,
+		payload: data,
+	});
 };
 
 export default companiesAction;

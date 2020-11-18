@@ -1,5 +1,6 @@
 import baseUrl from '../baseUrl';
 import { USER_LOGIN } from '../actionTypes';
+import userAction from './userAction';
 
 export const loginAction = user => ({
     type: USER_LOGIN,
@@ -27,7 +28,7 @@ export const login = (data, history) => async (dispatch, getState) => {
 
     if(access) {
         localStorage.setItem('token', access)
-        dispatch(loginAction({ ...user, authenticated: true }));
+        dispatch(userAction(access));
         history.push('/mainpage/')
     } else {
         dispatch(loginAction({ user: '', authenticated: false }));

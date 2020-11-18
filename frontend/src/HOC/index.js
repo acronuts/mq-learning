@@ -16,7 +16,7 @@ const WrapperComponent = WrappedComponent => {
 
 		return <WrappedComponent {...props} />;
 	};
-	const mapStateToProps = ({ loginReducer: { authenticated } }) => ({
+	const mapStateToProps = ({ user: { authenticated } }) => ({
 		authenticated,
 	});
 	return connect(mapStateToProps)(AuthComponent);

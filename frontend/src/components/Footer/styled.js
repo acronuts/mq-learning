@@ -15,6 +15,9 @@ export const FooterWrapper = styled.footer`
 
 export const LeftSide = styled.div`
 	width: 50%;
+	span {
+		font-size: ${fontSizes.medium};
+	}
 `;
 
 export const RightSide = styled.div`

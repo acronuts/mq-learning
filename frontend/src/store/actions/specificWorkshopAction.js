@@ -1,16 +1,19 @@
 import baseUrl from '../../store/baseUrl';
 
-export const specificWorkshopAction = props => async (dispatch, getState) => {
-	
-	// const token = getState().loginReducer.token;
-	const token = getState().loginReducer.token || localStorage.getItem('token');
+export const specificWorkshopAction = props => async (
+	dispatch,
+	getState,
+	token
+) => {
+	const userToken = token ? token : getState().user.token;
+	console.log(getState().user);
 
 	const url = `${baseUrl}/backend/api/workshops/${props}`;
 	const config = {
 		method: 'GET',
 		headers: new Headers({
 			Accept: 'application/json',
-			Authorization: `Bearer ${token}`,
+			Authorization: `Bearer ${userToken}`,
 		}),
 	};
 	const response = await fetch(url, config);

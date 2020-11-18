@@ -11,8 +11,6 @@ const WorkshopPage = ({ singleWorkshop, user }) => {
 	const history = useHistory();
 	const [showModal, setShowModal] = useState(false);
 
-	console.log(singleWorkshop.location ? singleWorkshop.location : null);
-
 	const openModal = e => {
 		setShowModal(true);
 	};

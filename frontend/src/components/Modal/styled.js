@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { colors } from '../../style/theme';
 
 export const ModalExtContainer = styled.main`
 	width: 100%;
@@ -16,7 +17,7 @@ export const ModalExtContainer = styled.main`
 export const ModalIntContainer = styled.section`
 	width: 30%;
 	height: 20%;
-    padding: 1.5rem;
+	padding: 1.5rem;
 	border-radius: 4px;
 	background: #fff;
 	position: fixed;
@@ -45,6 +46,13 @@ export const ContentSection = styled.section`
 	outline: none;
 	p {
 		margin-bottom: 1.3rem;
+		color: ${colors.dimGray};
+	}
+
+	.action-btns-container {
+		width: 50%;
+		display: flex;
+		justify-content: space-evenly;
 	}
 
 	.hide {

@@ -4,8 +4,8 @@ import cardBg from '../../assets/images/card-bg1.jpg';
 
 export const CardWrapper = styled.section`
 	display: flex;
-	width: 70%;
-	height: 13rem;
+	width: 78%;
+	height: 12rem;
 	background: url(${cardBg});
 	background-position: 100%;
 	background-size: cover;
@@ -30,7 +30,7 @@ export const InfoContainer = styled.section`
 	display: flex;
 
 	p {
-		margin: .15rem 0;
+		margin: 0.15rem 0;
 		font-weight: 300;
 		font-size: ${fontSizes.normal};
 	}
@@ -117,21 +117,24 @@ export const RightSection = styled.section`
 
 export const TokenSection = styled.div`
 	width: 100%;
-	p {
-		font-size: ${fontSizes.medium};
+	p,
+	span {
+		font-size: ${fontSizes.normal};
 	}
 `;
 
 export const AllocateTokenSection = styled.div`
 	width: 100%;
 	display: flex;
-
+	span {
+		font-size: ${fontSizes.normal};
+	}
 	input {
 		outline: none;
 		border: none;
 		padding-left: 0.5rem;
 		border-radius: ${borderRadius.borderRadiusS};
-		width: 25%;
-		height: 1.5rem;
+		width: 27%;
+		height: 1.6rem;
 	}
 `;

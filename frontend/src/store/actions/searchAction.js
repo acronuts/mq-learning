@@ -1,12 +1,11 @@
 import baseUrl from '../baseUrl';
-import React from 'react';
+import CompanyAdminCard from '../../components/CompAdmCard';
 
-
-const searchAction = (search, companyId) => async (dispatch, getState) => {
+const searchAction = (companyId, search) => async (dispatch, getState) => {
 	
     //const token = getState().loginReducer.token;//
     const token = localStorage.getItem("token")
-console.log(search)
+//console.log(search)
 	const url = `${baseUrl}/backend/api/users/company/${companyId}?search=${search}`;
 	const config = {
 		method: 'GET',

@@ -6,15 +6,14 @@ import * as theme from './style/theme';
 import Routes from './routes';
 import { Provider } from 'react-redux';
 import store from './store';
-import { loginReducer } from './store/reducers/loginReducer';
+import userAction from './store/actions/userAction';
 
 try {
 	const token = localStorage.getItem('token')
 	if (token) {
-		store.dispatch(loginReducer(token));
+		store.dispatch(userAction(token));
 	}
-} catch (error) {
-	
+} catch (error) {	
 }
 
 
