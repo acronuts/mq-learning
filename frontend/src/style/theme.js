@@ -64,6 +64,7 @@ export const colors = {
 	workshopWorkHover: '#66C9FF',
 	workshopRelations: '#FFDD5C',
 	workshopRelationsHover: '#FCD341',
+	workshopOther: '#CCCDC8',
 };
 
 //font-sizes

@@ -7,6 +7,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 
 from rest_framework.generics import GenericAPIView
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from .models import RegistrationProfile, PasswordReset
@@ -19,7 +20,7 @@ User = get_user_model()
 
 
 class RegistrationView(GenericAPIView):
-    permission_classes = []
+    permission_classes = [AllowAny]
 
     def post(self, request, *args, **kwargs):
         email = request.data['email']
@@ -66,7 +67,7 @@ class RegistrationView(GenericAPIView):
 
 
 class ValidationView(GenericAPIView):
-    permission_classes = []
+    permission_classes = [AllowAny]
     serializer_class = UserSerializer
 
     def post(self, request, *args, **kwargs):
