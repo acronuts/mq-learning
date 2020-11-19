@@ -10,6 +10,7 @@ import SearchBarComponent from '../SearchButton';
 import CompaniesCard from '../CompaniesCard';
 import Spinner from '../Spinner';
 import Employees from '../Employees/Index';
+import Companies from '../companies/index'
 
 const NavigateDashboard = ({ workshops, user, companies }) => {
 	const [active, setActive] = useState('workshop');
@@ -162,13 +163,14 @@ const NavigateDashboard = ({ workshops, user, companies }) => {
 
 					{active === 'companies' ? (
 						<Fragment>
-							{companies.length ? (
+							<Companies />
+							{/* {companies.length ? (
 								companies.map(company => (
 									<CompaniesCard company={company} key={company.id} />
 								))
 							) : (
 								<h4 style={message}>There are no registered Companies.</h4>
-							)}
+							)}  */}
 						</Fragment>
 					) : null}
 				</SectionWorkshop>
